@@ -1,10 +1,10 @@
- import React, { Component } from 'react';
+ import React from 'react';
  import Product from  './Product'
  import Title from './Title';
  import {ProductConsumer} from '../context';
- class ProductList extends Component {
-     
-     render() { 
+
+ const ProductList =()=> {
+        
          return ( 
          <React.Fragment>
              <div className="py-5">
@@ -24,7 +24,7 @@
              </div>
          </React.Fragment>
          );
-     }
+     
  }
   
  export default ProductList;

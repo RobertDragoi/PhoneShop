@@ -1,11 +1,38 @@
-import React, { Component } from 'react';
+import React,{Fragment,useContext} from 'react';
 import {Link} from 'react-router-dom';
 import logo from '../logo.svg';
 import styled from 'styled-components';
 import {ButtonContainer} from './Button';
-class Navbar extends Component {
-    state = {  }
-    render() { 
+import UserContext from './UserState/userContext';
+const Navbar =(props)=> {
+    
+    const userContext=useContext(UserContext);
+    const {isAuthenticated,user,Logout}=userContext;
+    const notLogged=(
+    <li className="nav-item ml-5">
+    <Link to='/api/register' className="nav-link">Register</Link>    
+    </li>)
+    const Logged2=( 
+    <Link to='/cart' className="ml-auto">
+    <ButtonContainer>
+        <span className="mr-2">
+        <i className="fas fa-cart-plus"/>
+        </span>
+        my cart
+    </ButtonContainer>
+        </Link>)
+    const Logged=(
+        <Fragment>
+    <Link to='/profile' className="nav-link">
+       Hello {user && user.name }
+    </Link>
+    <button onClick={Logout}>
+    <span className="mr-2">
+    <i className="fa fa-sign-out"/>
+    </span>
+    </button>
+    </Fragment>
+    )
         return (<NavWrapper className="navbar navbar-expand-sm navbar-dark px-sm-5">
             <Link to='/'>
             <img src={logo} alt="store" className="navbar-brand"></img>
@@ -14,18 +41,12 @@ class Navbar extends Component {
             <li className="nav-item ml-5">
             <Link to='/' className="nav-link">Products</Link>    
             </li>    
+            {isAuthenticated?Logged:notLogged}
             </ul> 
-            <Link to='/cart' className="ml-auto">
-                <ButtonContainer>
-                    <span className="mr-2">
-                    <i className="fas fa-cart-plus"/>
-                    </span>
-                    my cart
-                </ButtonContainer>
-            </Link>
+           {isAuthenticated?Logged2:<p></p>}
         </NavWrapper> 
         );
-    }
+    
 }
 const NavWrapper = styled.nav`
 background:var(--mainBlue);
