@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Title from '../Title';
 import CartColumns from './CartColumns';
 import EmptyCart from "./EmptyCart";
 import CartList from './CartList';
 import CartTotals from './CartTotals';
-import {ProductConsumer} from "../../context";
-class Cart extends Component {
-    state = {  }
-    render() { 
+
+const Cart=(props)=> {
+  
         return (
             <section>
-                <ProductConsumer>
+              
                     {(value)=>{
                         const{cart}=value;
                         if(cart.length>0){
@@ -29,11 +28,11 @@ class Cart extends Component {
                                 )
                         }
                     }}
-                    </ProductConsumer>                
+                                
                 
             </section>
             );
-    }
+    
 }
  
 export default Cart;

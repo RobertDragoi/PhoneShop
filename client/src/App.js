@@ -8,16 +8,17 @@ import ProductList from './components/ProductList';
 import Details from './components/Details';
 import Cart from './components/Cart';
 import Default from './components/Default';
-import Modal from './components/Modal';
 import Register from './components/Register';
 import Login from './components/Login';
 import UserState from './components/UserState/UserState';
 import AlertState from './components/AlertState/AlertState';
+import ProductState from './components/ProductsState/ProductState';
 class App extends Component {
   state = {  }
   render() { 
     return ( 
         <React.Fragment>
+          <ProductState>
           <UserState>
           <AlertState>
           <Navbar/>
@@ -30,9 +31,10 @@ class App extends Component {
             <Route exact path="/api/login" component={Login}/>
             <Route component={Default}/>
           </Switch>
-          <Modal/>
+          
           </AlertState>
           </UserState>
+          </ProductState>
         </React.Fragment>
        );
   }
