@@ -1,6 +1,7 @@
-import React,{useReducer} from 'react'
+import React,{useReducer,useContext} from 'react'
 import UserContext from './userContext';
 import UserReducer from './userReducer';
+import ProductContext from '../ProductsState/productContext'
 import axios from 'axios';
 import {
     REGISTER_SUCCES,
@@ -21,6 +22,8 @@ const UserState = (props) => {
         error:null
     };
     const [state,dispatch]=useReducer(UserReducer,initialState);
+    const productContext=useContext(ProductContext);
+    const {clearCart}=productContext;
     //Login
     const Login = async formData=>{
         const config={
@@ -69,6 +72,7 @@ const UserState = (props) => {
     }
     //Logout
     const Logout=async()=>{
+        clearCart()
         dispatch({type:LOGOUT})
     }
     //clearErrors

@@ -1,16 +1,19 @@
 import React, {useContext } from 'react';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
+import ProductContext from './ProductsState/productContext';
 const Product =(props)=> {
-    
-        const {key,title,img,price} = props;
+        const productContext=useContext(ProductContext);
+        const {productDetail}=productContext;
+        const {id,title,img,price} = props;
+        
         return ( 
         <ProductWrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3">
             <div className="card">
                 
                     <div className="img-container p-5" >
-                    <Link to="/details">
-                        <img src={img} alt="product" className="card-img-top">
+                    <Link to={`/details/${id}`}>
+                        <img src={img} alt="product" className="card-img-top" onClick={()=>productDetail(id)}>
                         </img>
                     </Link>
                    

@@ -10,7 +10,8 @@ import ProductContext from './ProductsState/productContext';
         if(products.length===0){
         getProducts();
         }
-         },[getProducts])
+        //eslint-disable-next
+         })
          return ( 
          <React.Fragment>
              <div className="py-5">
@@ -19,8 +20,9 @@ import ProductContext from './ProductsState/productContext';
             <div className="row ">
                 {products.map(product=>{
                         return(<Product key={product._id} 
+                        id={product._id}
                         title={product.title}
-                        img={product.img}
+                        img={`${process.env.PUBLIC_URL}/${product.img}`}
                         price={product.price}>
                         </Product>)
                 })}
