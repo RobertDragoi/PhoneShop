@@ -13,11 +13,13 @@ import Login from './components/Login';
 import UserState from './components/UserState/UserState';
 import AlertState from './components/AlertState/AlertState';
 import ProductState from './components/ProductsState/ProductState';
+import OrderState from './components/OrderState/OrderState';
 class App extends Component {
   state = {  }
   render() { 
     return ( 
         <React.Fragment>
+          <OrderState>
           <ProductState>
           <UserState>
           <AlertState>
@@ -35,6 +37,7 @@ class App extends Component {
           </AlertState>
           </UserState>
           </ProductState>
+          </OrderState>
         </React.Fragment>
        );
   }

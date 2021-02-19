@@ -1,9 +1,16 @@
 import React,{useContext} from 'react'
 import {Link} from 'react-router-dom';
 import ProductContext from '../ProductsState/productContext';
+import UserContext from '../UserState/userContext';
+import OrderContext from '../OrderState/orderContext';
 export default function CartTotals() {
     const productContext=useContext(ProductContext);
-    const {cartPrice,clearCart}=productContext;
+    const userContext=useContext(UserContext);
+    const orderContext=useContext(OrderContext);
+    const {cart,cartPrice,clearCart}=productContext;
+    const {user}=userContext;
+    const {sendOrder}=orderContext;
+    const products=cart.map(product =>`${product._id}:${product.count}:${product.total}`)
     return (
        <React.Fragment>
            <div className="container">
@@ -20,12 +27,10 @@ export default function CartTotals() {
                     </span>
                     <strong>$ </strong>
                 </h5>
-                <Link to="/">
                     <button className="btn btn-outline-primary text-uppercase mb-3 px-5" 
                     type="button"
-                     
+                     onClick={()=>sendOrder(user._id,products,cartPrice)}
                      >Send Order</button>
-                </Link>
                 </div>
             </div>
            </div>
