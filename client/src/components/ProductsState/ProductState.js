@@ -8,7 +8,10 @@ import {
     PRODUCT_ERROR,
     ADD_PRODUCT,
     REMOVE_PRODUCT,
-    CLEAR_CART    
+    CLEAR_CART,
+    INCREMENT,
+    DECREMENT,
+    CART_PRICE    
 } from '../../types'
 const ProductState = (props) => {
     const initialState={
@@ -46,19 +49,23 @@ const ProductState = (props) => {
     }
     //Add product
     const addProduct=()=>{
-        try { console.log('added to cart')
+        try { 
+            
             if(state.cart.filter(product=>product._id===state.detail._id).length===0)
-                dispatch({type:ADD_PRODUCT,payload:state.detail})
+                dispatch({type:ADD_PRODUCT,payload:{...state.detail,count:1,total:parseInt(state.detail.price)}})
         } catch (error) {
             dispatch({type:PRODUCT_ERROR,payload:error.response.data.msg})
         }
+        totalPrice()
     }
     const removeProduct=(id)=>{
         try {
+            
             dispatch({type:REMOVE_PRODUCT,payload:state.cart.filter(product=>product._id!==id)})
         } catch (error) {
             dispatch({type:PRODUCT_ERROR,payload:error.response.data.msg})
         }
+        totalPrice()
     }
     const clearCart=()=>{
         try {
@@ -67,6 +74,38 @@ const ProductState = (props) => {
             dispatch({type:PRODUCT_ERROR,payload:error.response.data.msg})
         }
         
+    }
+    const increment=(id)=>{
+        const auxCart=[...state.cart]
+        let obj=auxCart.find((product,i)=>{
+            if(product._id===id){
+                auxCart[i].count++;
+                auxCart[i].total=parseInt(auxCart[i].price)*auxCart[i].count
+                
+                dispatch({type:INCREMENT,payload:auxCart})
+                return true;
+            }
+        });
+        totalPrice()
+    }
+    const decrement=(id)=>{
+        const auxCart=[...state.cart] 
+        let obj=auxCart.find((product,i)=>{
+            if(product._id===id){
+                auxCart[i].count--;
+                auxCart[i].total=parseInt(auxCart[i].price)*auxCart[i].count
+                
+                dispatch({type:DECREMENT,payload:auxCart})
+                return true;
+            }
+        });
+        totalPrice()
+    }
+    const totalPrice=()=>{
+        let sum=0
+        state.cart.forEach(product=>sum+=product.total)
+        dispatch({type:CART_PRICE,payload:sum});
+        console.log("total price added")
     }
     return (<ProductContext.Provider value={{
     products:state.products,
@@ -78,7 +117,10 @@ const ProductState = (props) => {
     productDetail,
     addProduct,
     removeProduct,
-    clearCart
+    clearCart,
+    increment,
+    decrement,
+    totalPrice
     }}>
         {props.children}
     </ProductContext.Provider>

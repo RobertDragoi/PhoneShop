@@ -4,7 +4,10 @@ import {
     PRODUCT_ERROR ,
     ADD_PRODUCT,
     REMOVE_PRODUCT,
-    CLEAR_CART  
+    CLEAR_CART,  
+    INCREMENT,
+    DECREMENT,
+    CART_PRICE  
 } from '../../types'
 export default (state,action)=>{
     switch (action.type){
@@ -23,7 +26,7 @@ export default (state,action)=>{
             return{
                 ...state,
                 cart:[...state.cart,action.payload],
-                cartPrice:state.cartPrice+parseInt(action.payload.price)
+                
             }
         case REMOVE_PRODUCT:
             return{
@@ -44,6 +47,17 @@ export default (state,action)=>{
                     cartPrice:0
 
                 }
+        case INCREMENT:
+        case DECREMENT:
+            return{
+                ...state,
+                cart:action.payload
+            }
+        case CART_PRICE:
+            return{
+                ...state,
+                cartPrice:action.payload
+            }
         case PRODUCT_ERROR:
             return{
                 ...state,

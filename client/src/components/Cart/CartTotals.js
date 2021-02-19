@@ -1,7 +1,9 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import {Link} from 'react-router-dom';
-export default function CartTotals({value}) {
-    const {cartSubTotal,cartTax,cartTotal,clearCart}=value;
+import ProductContext from '../ProductsState/productContext';
+export default function CartTotals() {
+    const productContext=useContext(ProductContext);
+    const {cartPrice,clearCart}=productContext;
     return (
        <React.Fragment>
            <div className="container">
@@ -10,24 +12,20 @@ export default function CartTotals({value}) {
                 <Link to="/">
                     <button className="btn btn-outline-danger text-uppercase mb-3 px-5" 
                     type="button"
-                    onClick={()=>clearCart() } 
+                     onClick={()=>clearCart()}
                      >clear cart</button>
                 </Link>
                 <h5>
-                    <span className="text-title">subtotal: 
+                    <span className="text-title">total: {cartPrice}
                     </span>
-                    <strong>$ {cartSubTotal}</strong>
+                    <strong>$ </strong>
                 </h5>
-                <h5>
-                    <span className="text-title">tax: 
-                    </span>
-                    <strong>$ {cartTax}</strong>
-                </h5>
-                <h5>
-                    <span className="text-title">total: 
-                    </span>
-                    <strong>$ {cartTotal}</strong>
-                </h5>
+                <Link to="/">
+                    <button className="btn btn-outline-primary text-uppercase mb-3 px-5" 
+                    type="button"
+                     
+                     >Send Order</button>
+                </Link>
                 </div>
             </div>
            </div>

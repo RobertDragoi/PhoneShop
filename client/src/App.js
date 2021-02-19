@@ -25,7 +25,7 @@ class App extends Component {
           <Switch>
             <Redirect exact from="/" to="/shop" />
             <Route exact path="/shop" component={ProductList}/>
-            <Route exact path="/details" component={Details}/>
+            <Route  path="/details/:id" component={Details}/>
             <Route exact path="/cart" component={Cart}/>
             <Route exact path="/api/register" component={Register}/>
             <Route exact path="/api/login" component={Login}/>
