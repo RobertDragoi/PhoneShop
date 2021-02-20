@@ -1,18 +1,24 @@
-import React,{useContext} from 'react'
+import React,{useContext,useState} from 'react'
 import {Link} from 'react-router-dom';
 import ProductContext from '../ProductsState/productContext';
 import UserContext from '../UserState/userContext';
 import OrderContext from '../OrderState/orderContext';
+import Modal from '../Modal';
 export default function CartTotals() {
     const productContext=useContext(ProductContext);
     const userContext=useContext(UserContext);
     const orderContext=useContext(OrderContext);
     const {cart,cartPrice,clearCart}=productContext;
     const {user}=userContext;
-    const {sendOrder}=orderContext;
+    const {orderId,sendOrder}=orderContext;
     const products=cart.map(product =>`${product._id}:${product.count}:${product.total}`)
+    const [show,setShow]=useState(false);
+    const closeModal=()=>setShow(false);
+    const openModal=()=>setShow(true);
+    
     return (
        <React.Fragment>
+           <Modal orderId={orderId} show={show} closeModal={closeModal}/>
            <div className="container">
             <div className="row">
                 <div className="col-10 mt-2 ml-sm-5 ml-md-auto col-sm-8 text-capitalize text-right">
@@ -29,7 +35,8 @@ export default function CartTotals() {
                 </h5>
                     <button className="btn btn-outline-primary text-uppercase mb-3 px-5" 
                     type="button"
-                     onClick={()=>sendOrder(user._id,products,cartPrice)}
+                     onClick={()=>{sendOrder(user._id,products,cartPrice)
+                    openModal()}}
                      >Send Order</button>
                 </div>
             </div>

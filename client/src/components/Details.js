@@ -1,9 +1,13 @@
 import React,{useContext} from 'react'
+import {Link} from 'react-router-dom';
 import {ButtonContainer} from './Button';
 import ProductContext from './ProductsState/productContext';
+import UserContext from './UserState/userContext';
 const Details = (props) => {
     const productContext=useContext(ProductContext);
+    const userContext=useContext(UserContext);
     const {detail,addProduct}=productContext;
+    const {user}=userContext;
     return (
         <div className="container">
             <div className="row">
@@ -19,7 +23,9 @@ const Details = (props) => {
             <div className="p-2 bg-primary">Company: {detail.company}</div>
             <div className="p-2 bg-warning">Price: ${detail.price}</div>
             <div className="p-2 bg-info">Description: {detail.description}</div>
-            <ButtonContainer onClick={()=>addProduct()}>Add to cart</ButtonContainer>
+            {user?(<ButtonContainer onClick={()=>addProduct()}>Add to cart</ButtonContainer>):
+            (<Link to="/api/login"><ButtonContainer>Log in </ButtonContainer></Link>)}
+            
             </div>
                 </div>
                 </div>

@@ -1,0 +1,22 @@
+.Modal {
+  position: absolute;
+  top: 200px;
+  left: 200px;
+  right: 200px;
+  bottom: 200px;
+  background-color: white;
+  opacity: 1;
+}
+.center {
+  text-align: center;
+}
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--mainBlue);
+  opacity: 0.9;
+}

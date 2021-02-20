@@ -7,6 +7,7 @@ import OrderContext from './orderContext';
 import OrderReducer from './orderReducer';
 const OrderState = (props) => {
     const initialState={
+        orderId:null,
         customerId:null,
         products:null,
         price:0
@@ -17,9 +18,9 @@ const OrderState = (props) => {
         try {
             const res=await axios.post('http://localhost:5000/order',{customerId,products,price})
             dispatch({type:ORDER_SENT,payload:res.data})
-
+            console.log(state.orderId);
         } catch (error) {
-            console.log('error')
+            
         }
     }
     return (
