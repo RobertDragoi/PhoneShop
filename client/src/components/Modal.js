@@ -15,7 +15,8 @@ const Aux = (props) => {
            overlayClassName="Overlay"
         >
             <div className="center">
-              <h3>{`Order has been sent! Keep shopping on our site!`}</h3>
+              {props.orderId===null?(<div class="spinner-border text-primary"></div>):(<h3>{`Order ${props.orderId} has been sent! Keep shopping on our site!`}</h3>)}
+              
               </div>
               <div className="center">
               <Link to="/">

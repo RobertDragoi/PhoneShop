@@ -25,6 +25,7 @@ const OrderState = (props) => {
     }
     return (
         <OrderContext.Provider value={{
+            orderId:state.orderId,
             customerId:state.customerId,
             products:state.products,
             price:state.price,

@@ -17,10 +17,11 @@ export default function CartTotals() {
     const openModal=()=>setShow(true);
     
     return (
-       <React.Fragment>
-           <Modal orderId={orderId} show={show} closeModal={closeModal}/>
+       <div>
+           
            <div className="container">
             <div className="row">
+               <Modal orderId={orderId} show={show} closeModal={closeModal}/>
                 <div className="col-10 mt-2 ml-sm-5 ml-md-auto col-sm-8 text-capitalize text-right">
                 <Link to="/">
                     <button className="btn btn-outline-danger text-uppercase mb-3 px-5" 
@@ -33,6 +34,7 @@ export default function CartTotals() {
                     </span>
                     <strong>$ </strong>
                 </h5>
+                
                     <button className="btn btn-outline-primary text-uppercase mb-3 px-5" 
                     type="button"
                      onClick={()=>{sendOrder(user._id,products,cartPrice)
@@ -41,6 +43,6 @@ export default function CartTotals() {
                 </div>
             </div>
            </div>
-       </React.Fragment>
+       </div>
     )
 }
