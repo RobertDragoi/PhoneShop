@@ -1,0 +1,23 @@
+.product-container {
+  background-color: white;
+  width: 250px;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 10px 10px 10px;
+  &-image {
+    padding: 5px 5px 5px 5px;
+    max-width: 100%;
+    max-height: 100%;
+  }
+  &-footer {
+    display: flex;
+    flex-direction: column;
+    &-text {
+      height: 80px;
+    }
+    &-price {
+      padding-bottom: 15px;
+    }
+  }
+}
