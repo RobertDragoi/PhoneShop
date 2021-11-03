@@ -1,0 +1,47 @@
+@import "../variables.scss";
+.navbar {
+  &-container {
+    background-color: $mainBlue;
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-between;
+    &-left {
+      display: flex;
+      flex-direction: row;
+      align-self: center;
+      justify-content: flex-start;
+    }
+    &-right {
+      align-self: center;
+    }
+  }
+  &-item {
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    &:hover {
+      background-color: $mainYellow;
+    }
+  }
+  &-link {
+    text-decoration: none;
+    color: $mainWhite;
+    font-size: medium;
+    width: 100%;
+    &:hover {
+      text-decoration: none;
+      color: $mainWhite;
+      font-size: medium;
+    }
+  }
+  &-button {
+    background: none;
+    border: none;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
