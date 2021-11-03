@@ -35,6 +35,9 @@
       text-decoration: none;
       color: $mainWhite;
       font-size: medium;
+      -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+      transform: scale(1.1);
     }
   }
   &-button {

@@ -1,22 +1,23 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import ProductContext from "../ProductsState/productContext";
+import { useHistory } from "react-router-dom";
 import "./Product.scss";
 const Product = (props) => {
+  const history = useHistory();
   const productContext = useContext(ProductContext);
   const { productDetail } = productContext;
   const { id, title, img, price } = props;
 
   return (
-    <div className="product-container">
-      <Link to={`/details/${id}`}>
-        <img
-          className="product-container-image"
-          src={img}
-          alt="product"
-          onClick={() => productDetail(id)}
-        ></img>
-      </Link>
+    <div
+      onClick={() => {
+        productDetail(id);
+        history.push(`/details/${id}`);
+      }}
+      className="product-container"
+    >
+      <img className="product-container-image" src={img} alt="product"></img>
 
       <div className="product-container-footer">
         <div className="product-container-footer-text">
