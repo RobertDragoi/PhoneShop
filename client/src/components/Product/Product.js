@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
 import ProductContext from "../ProductsState/productContext";
 import { useHistory } from "react-router-dom";
 import "./Product.scss";
