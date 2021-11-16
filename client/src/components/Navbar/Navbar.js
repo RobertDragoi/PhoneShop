@@ -32,7 +32,7 @@ const Navbar = (props) => {
           </>
         ) : (
           <div className="navbar-item">
-            <Link to="/api/register" className="navbar-link">
+            <Link to="/register" className="navbar-link">
               Register
             </Link>
           </div>
