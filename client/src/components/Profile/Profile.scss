@@ -1,0 +1,24 @@
+@import "../variables.scss";
+.profile-container {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px 10px 10px 10px;
+  border-radius: 5px;
+  background-color: white;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  &-row {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    &-left {
+      width: 50%;
+      padding-left: 10px;
+      margin-right: 10px;
+      border-left: 1px solid $mainBlue;
+      border-right: 1px solid $mainBlue;
+    }
+  }
+}
