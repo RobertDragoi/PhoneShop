@@ -127,6 +127,7 @@ const Register = (props) => {
             Log In
           </Link>
         </p>
+        <Alerts />
       </form>
     </div>
   );
