@@ -17,14 +17,7 @@ const ProductState = (props) => {
   const initialState = {
     products: [],
     cart: [],
-    detail: {
-      title: "",
-      img: "",
-      price: "",
-      company: "",
-      description: "",
-    },
-    loading: true,
+    detail: null,
     cartPrice: 0,
     error: null,
   };
@@ -89,11 +82,10 @@ const ProductState = (props) => {
   };
   const increment = (id) => {
     const auxCart = [...state.cart];
-    let obj = auxCart.find((product, i) => {
+    auxCart.forEach((product, i) => {
       if (product._id === id) {
         auxCart[i].count++;
         auxCart[i].total = parseInt(auxCart[i].price) * auxCart[i].count;
-
         dispatch({ type: INCREMENT, payload: auxCart });
         return true;
       }
@@ -102,7 +94,7 @@ const ProductState = (props) => {
   };
   const decrement = (id) => {
     const auxCart = [...state.cart];
-    let obj = auxCart.find((product, i) => {
+    auxCart.forEach((product, i) => {
       if (product._id === id) {
         auxCart[i].count--;
         auxCart[i].total = parseInt(auxCart[i].price) * auxCart[i].count;

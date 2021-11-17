@@ -10,8 +10,8 @@ const Product = (props) => {
 
   return (
     <div
-      onClick={() => {
-        productDetail(id);
+      onClick={async () => {
+        await productDetail(id);
         history.push(`/details/${id}`);
       }}
       className="product-container"
