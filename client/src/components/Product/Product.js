@@ -1,17 +1,13 @@
-import React, { useContext } from "react";
-import ProductContext from "../ProductsState/productContext";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import "./Product.scss";
 const Product = (props) => {
   const history = useHistory();
-  const productContext = useContext(ProductContext);
-  const { productDetail } = productContext;
   const { id, title, img, price } = props;
 
   return (
     <div
-      onClick={async () => {
-        await productDetail(id);
+      onClick={() => {
         history.push(`/details/${id}`);
       }}
       className="product-container"

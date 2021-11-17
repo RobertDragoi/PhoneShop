@@ -7,6 +7,7 @@ import {
   DETAIL_PRODUCT,
   PRODUCT_ERROR,
   ADD_PRODUCT,
+  LOADING_PRODUCT,
   REMOVE_PRODUCT,
   CLEAR_CART,
   INCREMENT,
@@ -17,6 +18,7 @@ const ProductState = (props) => {
   const initialState = {
     products: [],
     cart: [],
+    loading: null,
     detail: null,
     cartPrice: 0,
     error: null,
@@ -33,9 +35,10 @@ const ProductState = (props) => {
     }
   };
   //Get product detail
-  const productDetail = async (id) => {
+  const getProductDetail = async (id) => {
     try {
       console.log(`got product ${id}`);
+      dispatch({ type: LOADING_PRODUCT });
       const res = await axios.get(`http://localhost:5000/api/shop/${id}`);
       dispatch({ type: DETAIL_PRODUCT, payload: res.data });
     } catch (error) {
@@ -117,10 +120,11 @@ const ProductState = (props) => {
         products: state.products,
         cart: state.cart,
         detail: state.detail,
+        loading: state.loading,
         cartPrice: state.cartPrice,
         error: state.error,
         getProducts,
-        productDetail,
+        getProductDetail,
         addProduct,
         removeProduct,
         clearCart,

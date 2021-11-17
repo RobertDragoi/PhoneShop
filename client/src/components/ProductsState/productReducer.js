@@ -3,6 +3,7 @@ import {
   DETAIL_PRODUCT,
   PRODUCT_ERROR,
   ADD_PRODUCT,
+  LOADING_PRODUCT,
   REMOVE_PRODUCT,
   CLEAR_CART,
   INCREMENT,
@@ -19,12 +20,18 @@ export default (state, action) => {
     case DETAIL_PRODUCT:
       return {
         ...state,
+        loading: false,
         detail: action.payload,
       };
     case ADD_PRODUCT:
       return {
         ...state,
         cart: [...state.cart, action.payload],
+      };
+    case LOADING_PRODUCT:
+      return {
+        ...state,
+        loading: true,
       };
     case REMOVE_PRODUCT:
       return {
