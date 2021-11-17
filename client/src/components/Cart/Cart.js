@@ -1,11 +1,11 @@
 import React, { useContext, Fragment, useEffect } from "react";
-import Title from "../Title";
 import CartColumns from "./CartColumns";
 import EmptyCart from "./EmptyCart";
 import CartList from "./CartList";
 import CartTotals from "./CartTotals";
 import ProductContext from "../ProductsState/productContext";
-const Cart = (props) => {
+import "./Cart.scss";
+const Cart = () => {
   const productContext = useContext(ProductContext);
   const { cart, totalPrice } = productContext;
   useEffect(() => {
@@ -17,7 +17,10 @@ const Cart = (props) => {
         <EmptyCart />
       ) : (
         <Fragment>
-          <Title name="my" title="cart" />
+          <div className="cart-title">
+            <h1 className="cart-title-left">My</h1>
+            <h1 className="cart-title-right">Cart</h1>
+          </div>
           <CartColumns />
           <CartList cart={cart} />
           <CartTotals />

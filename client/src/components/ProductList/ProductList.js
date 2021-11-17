@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
-import Product from "./Product/Product";
-import Title from "./Title";
-import ProductContext from "./ProductsState/productContext";
+import Product from "../Product/Product";
+import "./ProductList.scss";
+import ProductContext from "../ProductsState/productContext";
 const ProductList = () => {
   const productContext = useContext(ProductContext);
   const { products, getProducts } = productContext;
@@ -15,7 +15,11 @@ const ProductList = () => {
   return (
     <React.Fragment>
       <div className="container">
-        <Title name="our" title="products"></Title>
+        <div className="product-list-title">
+          <h1 className="product-list-title-left">Our</h1>
+          <h1 className="product-list-title-right"> Products</h1>
+        </div>
+
         <div className="row justify-content-center">
           {products.map((product) => {
             return (
