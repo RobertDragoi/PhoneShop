@@ -41,12 +41,12 @@ const Navbar = (props) => {
 
       {isAuthenticated ? (
         <div className="navbar-container-right">
-          <Link to="/cart" className="ml-auto">
-            <ButtonContainer>
+          <div className="navbar-item">
+            <Link to="/cart" className="navbar-link">
               <FontAwesomeIcon icon={faCartPlus} />
-              my cart
-            </ButtonContainer>
-          </Link>
+              My Cart
+            </Link>
+          </div>
         </div>
       ) : null}
     </div>
