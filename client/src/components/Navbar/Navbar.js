@@ -24,10 +24,10 @@ const Navbar = (props) => {
                 Hello {user && user.name}
               </Link>
             </div>
-            <div className="navbar-item">
-              <button className="navbar-button" onClick={Logout}>
+            <div className="navbar-item" onClick={() => Logout()}>
+              <Link to="/register" className="navbar-link">
                 <FontAwesomeIcon icon={faSignOutAlt} />
-              </button>
+              </Link>
             </div>
           </>
         ) : (
@@ -43,8 +43,7 @@ const Navbar = (props) => {
         <div className="navbar-container-right">
           <div className="navbar-item">
             <Link to="/cart" className="navbar-link">
-              <FontAwesomeIcon icon={faCartPlus} />
-              My Cart
+              <FontAwesomeIcon icon={faCartPlus} /> My Cart
             </Link>
           </div>
         </div>
