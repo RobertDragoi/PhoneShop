@@ -6,28 +6,27 @@ import OrderReducer from "./orderReducer";
 const OrderState = (props) => {
   const initialState = {
     orderId: null,
-    customerId: null,
+    customer: null,
     products: null,
     price: 0,
   };
   const [state, dispatch] = useReducer(OrderReducer, initialState);
   //Sent order
-  const sendOrder = async (customerId, products, price) => {
+  const sendOrder = async (customer, products, price) => {
     try {
       const res = await axios.post("http://localhost:5000/api/order", {
-        customerId,
+        customer,
         products,
         price,
       });
       dispatch({ type: ORDER_SENT, payload: res.data });
-      console.log(state.orderId);
     } catch (error) {}
   };
   return (
     <OrderContext.Provider
       value={{
         orderId: state.orderId,
-        customerId: state.customerId,
+        customer: state.customer,
         products: state.products,
         price: state.price,
         sendOrder,
