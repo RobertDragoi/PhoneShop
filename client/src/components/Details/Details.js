@@ -1,13 +1,13 @@
 import React, { useContext, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ButtonContainer } from "./Button";
-import ProductContext from "./ProductsState/productContext";
-import UserContext from "./UserState/userContext";
+import { ButtonContainer } from "../Button";
+import ProductContext from "../ProductsState/productContext";
+import UserContext from "../UserState/userContext";
 const Details = () => {
   const productContext = useContext(ProductContext);
   const userContext = useContext(UserContext);
   const { detail, loading, getProductDetail, addProduct } = productContext;
-  const { user } = userContext;
+  const { isAuthenticated } = userContext;
   const { id } = useParams();
   console.log(loading);
   useEffect(() => {
@@ -43,7 +43,7 @@ const Details = () => {
                 <div className="p-2 bg-info">
                   Description: {detail?.description}
                 </div>
-                {user ? (
+                {isAuthenticated ? (
                   <ButtonContainer onClick={() => addProduct()}>
                     Add to cart
                   </ButtonContainer>

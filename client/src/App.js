@@ -4,7 +4,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./components/Navbar/Navbar";
 import ProductList from "./components/ProductList/ProductList";
-import Details from "./components/Details";
+import Details from "./components/Details/Details";
 import Cart from "./components/Cart";
 import Default from "./components/Default";
 import Register from "./components/Register/Register";
