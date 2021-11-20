@@ -1,15 +1,17 @@
 import React, { useContext, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import { ButtonContainer } from "../Button";
+import { Link, useParams, useHistory } from "react-router-dom";
 import ProductContext from "../ProductsState/productContext";
 import UserContext from "../UserState/userContext";
+import "./Details.scss";
 const Details = () => {
   const productContext = useContext(ProductContext);
   const userContext = useContext(UserContext);
-  const { detail, loading, getProductDetail, addProduct } = productContext;
+  const { cart, detail, loading, getProductDetail, addProduct } =
+    productContext;
   const { isAuthenticated } = userContext;
   const { id } = useParams();
-  console.log(loading);
+  const history = useHistory();
+
   useEffect(() => {
     const fetchProductDetail = async (id) => {
       await getProductDetail(id);
@@ -26,34 +28,60 @@ const Details = () => {
         </div>
       ) : (
         <div className="row">
-          <div className="col-sm">
-            <h2>{detail?.title}</h2>
-            <img
-              src={`${process.env.PUBLIC_URL}/${detail?.img}`}
-              alt="product"
-              className="card-img-top"
-            ></img>
-          </div>
-          <div className="col-sm">
-            <div className="d-flex flex-column">
-              <div style={{ padding: 40 }}>
-                <div className="p-2 bg-info">Name: {detail?.title}</div>
-                <div className="p-2 bg-primary">Company: {detail?.company}</div>
-                <div className="p-2 bg-warning">Price: ${detail?.price}</div>
-                <div className="p-2 bg-info">
-                  Description: {detail?.description}
+          <div>
+            <div className="col-2"></div>
+            <div className="col-8">
+              <div className="details-container">
+                <div className="details-container-row">
+                  <img
+                    src={`${process.env.PUBLIC_URL}/${detail?.img}`}
+                    alt="product"
+                    className="details-container-image"
+                  ></img>
                 </div>
-                {isAuthenticated ? (
-                  <ButtonContainer onClick={() => addProduct()}>
-                    Add to cart
-                  </ButtonContainer>
-                ) : (
-                  <Link to="/api/login">
-                    <ButtonContainer>Log in </ButtonContainer>
-                  </Link>
-                )}
+                <div className="details-container-row">
+                  <h1 className="details-container-row-title">
+                    {detail?.title}
+                  </h1>
+                  <p className="details-container-row-text">
+                    {detail?.company}
+                  </p>
+                  <p className="details-container-row-text">
+                    {detail?.description}
+                  </p>
+                  <p className="details-container-row-text">
+                    {detail?.price} Lei
+                  </p>
+                  {!isAuthenticated ? (
+                    <Link className="details-container-button" to="/login">
+                      Log in
+                    </Link>
+                  ) : cart.some((e) => e._id === detail._id) ? (
+                    <button
+                      disabled
+                      className="details-container-button"
+                      onClick={() => {
+                        addProduct();
+                        history.push("/cart");
+                      }}
+                    >
+                      Added to cart
+                    </button>
+                  ) : (
+                    <button
+                      className="details-container-button"
+                      onClick={() => {
+                        addProduct();
+                        history.push("/cart");
+                      }}
+                    >
+                      Add to cart
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
+            <div className="col-2"></div>
           </div>
         </div>
       )}

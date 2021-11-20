@@ -10,3 +10,7 @@ body {
   background: var(--mainWhite) !important;
   color: var(--mainDark) !important;
 }
+.col-8 {
+  width: 100% !important;
+  flex: 0 0 auto !important;
+}
