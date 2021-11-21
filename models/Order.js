@@ -3,8 +3,8 @@ let OrderSchema = new mongoose.Schema({
   customer: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   products: [
     {
-      product: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
       count: { type: Number, required: true },
+      product: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
       total: { type: Number, required: true },
     },
   ],

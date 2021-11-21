@@ -1,14 +1,12 @@
 import React, { useReducer } from "react";
-import { ORDER_SENT } from "../../types";
+import { ORDER_SENT, USER_ORDERS_LOADED } from "../../types";
 import axios from "axios";
 import OrderContext from "./orderContext";
 import OrderReducer from "./orderReducer";
 const OrderState = (props) => {
   const initialState = {
-    orderId: null,
-    customer: null,
-    products: null,
-    price: 0,
+    order: null,
+    userOrders: [],
   };
   const [state, dispatch] = useReducer(OrderReducer, initialState);
   //Sent order
@@ -22,14 +20,20 @@ const OrderState = (props) => {
       dispatch({ type: ORDER_SENT, payload: res.data });
     } catch (error) {}
   };
+  //Get customer's orders
+  const getUserOrders = async (id) => {
+    try {
+      const res = await axios.get(`http://localhost:5000/api/order/user/${id}`);
+      dispatch({ type: USER_ORDERS_LOADED, payload: res.data });
+    } catch (error) {}
+  };
   return (
     <OrderContext.Provider
       value={{
-        orderId: state.orderId,
-        customer: state.customer,
-        products: state.products,
-        price: state.price,
+        order: state.order,
+        userOrders: state.userOrders,
         sendOrder,
+        getUserOrders,
       }}
     >
       {props.children}

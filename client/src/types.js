@@ -18,3 +18,4 @@ export const INCREMENT = "INCREMENT";
 export const DECREMENT = "DECREMENT";
 export const CART_PRICE = "CART_PRICE";
 export const ORDER_SENT = "ORDER_SENT";
+export const USER_ORDERS_LOADED = "USER_ORDERS_LOADED";
