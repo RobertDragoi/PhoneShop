@@ -13,6 +13,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    border: 1px solid $mainBlue;
   }
   &-row {
     width: 50%;
@@ -25,5 +26,22 @@
       border-left: 1px solid $mainBlue;
       border-right: 1px solid $mainBlue;
     }
+  }
+}
+.profile-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  font-family: "Oswald", sans-serif;
+  letter-spacing: 0.3rem;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+  &-left {
+    color: $mainBlue;
+  }
+  &-right {
+    color: $mainYellow;
   }
 }

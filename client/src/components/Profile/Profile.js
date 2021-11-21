@@ -25,10 +25,10 @@ const Profile = () => {
         <div className="col-8">
           <div className="profile-container">
             <div className="profile-container-row-left">
-              <div>Name</div>
-              <div>Age</div>
-              <div>Address</div>
-              <div>Date of registration</div>
+              <div>Nume</div>
+              <div>Vârstă</div>
+              <div>Adresă</div>
+              <div>Data înregistrării</div>
             </div>
             <div className="profile-container-row">
               <div>{user?.name}</div>
@@ -36,6 +36,10 @@ const Profile = () => {
               <div>{user?.address}</div>
               <div>{convertDate(user?.date)}</div>
             </div>
+          </div>
+          <div className="product-list-title">
+            <h1 className="product-list-title-left">Comenzile</h1>
+            <h1 className="product-list-title-right">mele</h1>
           </div>
           {userOrders.map((order) => (
             <div className="profile-container">
@@ -54,12 +58,8 @@ const Profile = () => {
                       {product.product.title}
                     </div>
 
-                    <div className="col-10 mx-auto col-lg-2 my-2 my-lg-0">
-                      <div className="d-flex justify-content-center">
-                        <div className="col-10 mx-auto col-lg-2">
-                          <strong> Bucăți : {product.count} </strong>
-                        </div>
-                      </div>
+                    <div className="col-10 mx-auto col-lg-2">
+                      <strong> Bucăți : {product.count} </strong>
                     </div>
 
                     <div className="col-10 mx-auto col-lg-2">
@@ -67,8 +67,10 @@ const Profile = () => {
                     </div>
                   </div>
                 ))}
-                <div className="col-10 mx-auto col-lg-2">
-                  <strong> Total : {order.price} Lei</strong>
+                <div className="row my-2 text-center text-capitalize">
+                  <div className="col-10 mx-auto col-lg-2">
+                    <strong> Total : {order.price} Lei</strong>
+                  </div>
                 </div>
               </div>
             </div>
