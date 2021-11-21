@@ -13,14 +13,14 @@ const Navbar = (props) => {
       <div className="navbar-container-left">
         <div className="navbar-item">
           <Link to="/" className="navbar-link">
-            Products
+            Produse
           </Link>
         </div>
         {isAuthenticated ? (
           <>
             <div className="navbar-item">
               <Link to="/profile" className="navbar-link">
-                Hello {user && user.name}
+                Salut {user && user.name}
               </Link>
             </div>
             <div className="navbar-item" onClick={() => Logout()}>
@@ -32,7 +32,7 @@ const Navbar = (props) => {
         ) : (
           <div className="navbar-item">
             <Link to="/register" className="navbar-link">
-              Register
+              Înregistrează-te
             </Link>
           </div>
         )}
@@ -42,7 +42,7 @@ const Navbar = (props) => {
         <div className="navbar-container-right">
           <div className="navbar-item">
             <Link to="/cart" className="navbar-link">
-              <FontAwesomeIcon icon={faCartPlus} /> My Cart
+              <FontAwesomeIcon icon={faCartPlus} /> Coșul meu
             </Link>
           </div>
         </div>

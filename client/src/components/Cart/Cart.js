@@ -18,8 +18,8 @@ const Cart = () => {
       ) : (
         <Fragment>
           <div className="cart-title">
-            <h1 className="cart-title-left">My</h1>
-            <h1 className="cart-title-right">Cart</h1>
+            <h1 className="cart-title-left">Coșul</h1>
+            <h1 className="cart-title-right">Meu</h1>
           </div>
           <CartColumns />
           <CartList cart={cart} />

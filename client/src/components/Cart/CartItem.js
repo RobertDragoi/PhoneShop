@@ -16,7 +16,7 @@ export default function CartItem(props) {
         ></img>
       </div>
       <div className="col-10 mx-auto col-lg-2">{title}</div>
-      <div className="col-10 mx-auto col-lg-2">$ {price}</div>
+      <div className="col-10 mx-auto col-lg-2">{price} Lei</div>
       <div className="col-10 mx-auto col-lg-2 my-2 my-lg-0">
         <div className="d-flex justify-content-center">
           <div>
@@ -51,7 +51,7 @@ export default function CartItem(props) {
         </div>
       </div>
       <div className="col-10 mx-auto col-lg-2">
-        <strong> item total : $ {total} </strong>
+        <strong> {total} Lei</strong>
       </div>
     </div>
   );

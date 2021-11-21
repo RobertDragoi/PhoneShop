@@ -16,8 +16,7 @@ const ProductList = () => {
     <React.Fragment>
       <div className="container">
         <div className="product-list-title">
-          <h1 className="product-list-title-left">Our</h1>
-          <h1 className="product-list-title-right"> Products</h1>
+          <h1 className="product-list-title-left">Produse</h1>
         </div>
 
         <div className="row justify-content-center">

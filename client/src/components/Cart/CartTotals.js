@@ -16,11 +16,10 @@ export default function CartTotals() {
     product: product._id,
     total: product.total,
   }));
-  console.log(products);
   const [show, setShow] = useState(false);
   const closeModal = () => setShow(false);
   const openModal = () => setShow(true);
-  //`${product._id}:${product.count}:${product.total}`
+
   return (
     <div>
       <div className="container">
@@ -33,12 +32,12 @@ export default function CartTotals() {
                 type="button"
                 onClick={() => clearCart()}
               >
-                clear cart
+                Golește Cos
               </button>
             </Link>
             <h5>
               <span className="text-title">total: {cartPrice}</span>
-              <strong>$ </strong>
+              <strong> Lei</strong>
             </h5>
 
             <button
@@ -49,7 +48,7 @@ export default function CartTotals() {
                 openModal();
               }}
             >
-              Send Order
+              Trimite comandă
             </button>
           </div>
         </div>
