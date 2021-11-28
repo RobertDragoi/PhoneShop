@@ -5,8 +5,8 @@ export default function EmptyCart() {
     <div className="container">
       <div className="row">
         <div className="cart-title">
-          <h1 className="cart-title-left">Empty</h1>
-          <h1 className="cart-title-right">Cart</h1>
+          <h1 className="cart-title-left">Cos</h1>
+          <h1 className="cart-title-right">Gol</h1>
         </div>
       </div>
     </div>

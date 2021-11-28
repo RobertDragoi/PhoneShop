@@ -38,12 +38,12 @@ const Register = (props) => {
 
   return (
     <div className="w-50 mx-auto my-4 p-4 card container">
-      <h1 className="register-title">Register now</h1>
+      <h1 className="register-title">Înregistrare</h1>
       <form onSubmit={onSubmit}>
         <div className="form-row">
           <div className="form-group col-md-12">
             <label className="control-label" htmlFor="name">
-              Full Name<span className="text-primary">*</span>:
+              Nume<span className="text-primary">*</span>:
             </label>
             <input
               onChange={onChange}
@@ -52,7 +52,7 @@ const Register = (props) => {
               name="name"
               value={name}
               required
-              placeholder="Full name"
+              placeholder="Nume"
             />
           </div>
           <div className="form-group col-md-12">
@@ -72,7 +72,7 @@ const Register = (props) => {
         </div>
         <div className="form-group col-md-12">
           <label className="control-label" htmlFor="Address">
-            Age:
+            Vârstă:
           </label>
           <div>
             <input
@@ -81,14 +81,13 @@ const Register = (props) => {
               className="form-control"
               name="age"
               value={age}
-              placeholder="Age"
-              autoComplete="street-address"
+              placeholder="Vârstă"
             />
           </div>
         </div>
         <div className="form-group col-md-12">
           <label className="control-label" htmlFor="Address">
-            Address:
+            Adresă:
           </label>
           <div>
             <input
@@ -97,14 +96,13 @@ const Register = (props) => {
               className="form-control"
               name="address"
               value={address}
-              placeholder="Address"
-              autoComplete="street-address"
+              placeholder="Adresă"
             />
           </div>
         </div>
         <div className="form-group col-md-12">
           <label className="control-label">
-            Password<span className="text-primary">*</span>:
+            Parolă<span className="text-primary">*</span>:
           </label>
           <div>
             <input
@@ -114,7 +112,7 @@ const Register = (props) => {
               name="password"
               value={password}
               required
-              placeholder="Password"
+              placeholder="Parolă"
             />
           </div>
         </div>
@@ -122,9 +120,9 @@ const Register = (props) => {
           <input type="submit" className="register-button" value="Submit" />
         </div>
         <p className="text-muted my-2">
-          You already have an account?{" "}
+          Ai deja un cont?{" "}
           <Link className="register-link" to="/login">
-            Log In
+            Loghează-te
           </Link>
         </p>
         <Alerts />

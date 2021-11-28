@@ -23,7 +23,7 @@ const Details = () => {
       {loading ? (
         <div class="d-flex justify-content-center">
           <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
+            <span class="sr-only">Se încarcă..</span>
           </div>
         </div>
       ) : (
@@ -54,7 +54,7 @@ const Details = () => {
                   </p>
                   {!isAuthenticated ? (
                     <Link className="details-container-button" to="/login">
-                      Log in
+                      Logare
                     </Link>
                   ) : cart.some((e) => e._id === detail._id) ? (
                     <button
@@ -65,7 +65,7 @@ const Details = () => {
                         history.push("/cart");
                       }}
                     >
-                      Added to cart
+                      Adaugat în coș
                     </button>
                   ) : (
                     <button
@@ -75,7 +75,7 @@ const Details = () => {
                         history.push("/cart");
                       }}
                     >
-                      Add to cart
+                      Adaugă în coș
                     </button>
                   )}
                 </div>

@@ -19,7 +19,7 @@ const ProductList = () => {
           <h1 className="product-list-title-left">Produse</h1>
         </div>
 
-        <div className="row justify-content-center">
+        <div className="row ">
           {products.map((product) => {
             return (
               <Product

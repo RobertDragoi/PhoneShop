@@ -33,7 +33,7 @@ const Login = (props) => {
   };
   return (
     <div className="w-50 mx-auto my-4 p-4 card container">
-      <h1 className="login-title">Login now</h1>
+      <h1 className="login-title">Logare</h1>
       <form onSubmit={onSubmit}>
         <div className="form-row">
           <div className="form-group col-md-12">
@@ -54,7 +54,7 @@ const Login = (props) => {
 
         <div className="form-group col-md-12">
           <label className="control-label">
-            Password<span className="text-primary">*</span>:
+            Parolă<span className="text-primary">*</span>:
           </label>
           <div>
             <input
@@ -64,7 +64,7 @@ const Login = (props) => {
               name="password"
               value={password}
               required
-              placeholder="Password"
+              placeholder="Parolă"
             />
           </div>
         </div>
@@ -72,9 +72,9 @@ const Login = (props) => {
           <input type="submit" className="login-button" value="Submit" />
         </div>
         <p className="text-muted my-2">
-          You don't have an account?{" "}
+          Nu ai un cont înregistrat?{" "}
           <Link className="login-link" to="/register">
-            Sign up
+            Înregistrează-te
           </Link>
         </p>
         <Alerts />
