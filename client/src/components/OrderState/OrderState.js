@@ -10,10 +10,11 @@ const OrderState = (props) => {
   };
   const [state, dispatch] = useReducer(OrderReducer, initialState);
   //Sent order
-  const sendOrder = async (customer, products, price) => {
+  const sendOrder = async (customer, billingInfo, products, price) => {
     try {
       const res = await axios.post("http://localhost:5000/api/order", {
         customer,
+        billingInfo,
         products,
         price,
       });
@@ -27,6 +28,7 @@ const OrderState = (props) => {
       dispatch({ type: USER_ORDERS_LOADED, payload: res.data });
     } catch (error) {}
   };
+
   return (
     <OrderContext.Provider
       value={{

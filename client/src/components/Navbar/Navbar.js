@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Navbar.scss";
 const Navbar = () => {
   const userContext = useContext(UserContext);
-  const { isAuthenticated, user, Logout } = userContext;
+  const { isAuthenticated, Logout } = userContext;
 
   return (
     <div className="navbar-container">
@@ -27,7 +27,7 @@ const Navbar = () => {
               <div className="navbar-item-content-item">
                 <Link className="navbar-link" to="/profile">
                   <FontAwesomeIcon color="white" icon={faUserAlt} />
-                  {user?.name}
+                  Profil
                 </Link>
               </div>
               <div className="navbar-item-content-item">

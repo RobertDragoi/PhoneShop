@@ -1,6 +1,12 @@
 const mongoose = require("mongoose");
 let OrderSchema = new mongoose.Schema({
   customer: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  billingInfo: {
+    name: { type: String, required: true },
+    address: { type: String, required: true },
+    phone: { type: String, required: true },
+    payOption: { type: String, required: true },
+  },
   products: [
     {
       count: { type: Number, required: true },

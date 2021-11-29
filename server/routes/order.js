@@ -3,8 +3,8 @@ const router = express.Router();
 const Order = require("../models/Order");
 router.post("/", async (req, res) => {
   try {
-    const { customer, products, price } = req.body;
-    let order = new Order({ customer, products, price });
+    const { customer, billingInfo, products, price } = req.body;
+    let order = new Order({ customer, billingInfo, products, price });
     await order.save();
     await Order.findById(order.id)
       .populate([
