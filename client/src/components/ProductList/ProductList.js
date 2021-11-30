@@ -12,7 +12,9 @@ const ProductList = () => {
   useEffect(() => {
     if (products.length === 0) {
       getProducts();
-      LoadUser();
+      if (localStorage.getItem("token")) {
+        LoadUser();
+      }
     }
   }, []);
   return (
