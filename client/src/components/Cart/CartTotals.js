@@ -9,7 +9,7 @@ export default function CartTotals() {
   const orderContext = useContext(OrderContext);
   const { cart, cartPrice, clearCart } = productContext;
   const { user } = userContext;
-  const { sendOrder, order } = orderContext;
+  const { sendOrder } = orderContext;
   const history = useHistory();
   const products = cart.map((product) => ({
     count: product.count,

@@ -41,11 +41,14 @@ const Profile = () => {
             <h1 className="product-list-title-left">Comenzile</h1>
             <h1 className="product-list-title-right">mele</h1>
           </div>
-          {userOrders.map((order) => (
-            <div className="profile-container">
+          {userOrders?.map((order, index) => (
+            <div key={`order_${index}`} className="profile-container">
               <div className="profile-container-item">
-                {order.products.map((product) => (
-                  <div className="row my-2 text-center text-capitalize">
+                {order?.products.map((product, index2) => (
+                  <div
+                    key={`order_${index}_item${index2}`}
+                    className="row my-2 text-center text-capitalize"
+                  >
                     <div className="col-10 mx-auto col-lg-2">
                       <img
                         alt="img"

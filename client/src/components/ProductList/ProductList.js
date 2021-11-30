@@ -2,16 +2,19 @@ import React, { useContext, useEffect } from "react";
 import Product from "../Product/Product";
 import "./ProductList.scss";
 import ProductContext from "../ProductsState/productContext";
+import UserContext from "../UserState/userContext";
 const ProductList = () => {
   const productContext = useContext(ProductContext);
+  const userContext = useContext(UserContext);
   const { products, getProducts } = productContext;
+  const { LoadUser } = userContext;
 
   useEffect(() => {
     if (products.length === 0) {
       getProducts();
+      LoadUser();
     }
-    //eslint-disable-next
-  });
+  }, []);
   return (
     <React.Fragment>
       <div className="container">

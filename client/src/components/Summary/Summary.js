@@ -6,8 +6,11 @@ const Summary = () => {
   const { order } = orderContext;
   return (
     <div>
-      {order.products.map((product) => (
-        <div className="row my-2 text-center text-capitalize">
+      {order.products.map((product, index) => (
+        <div
+          key={`summary_${index}`}
+          className="row my-2 text-center text-capitalize"
+        >
           <div className="col-10 mx-auto col-lg-2">
             <img
               alt="img"
