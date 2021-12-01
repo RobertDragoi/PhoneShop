@@ -13,7 +13,7 @@ const ProductList = () => {
     if (products.length === 0) {
       getProducts();
       if (localStorage.getItem("token")) {
-        LoadUser();
+        //LoadUser();
       }
     }
   }, []);

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../UserState/userContext";
 import {
@@ -13,8 +13,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Navbar.scss";
 const Navbar = () => {
   const userContext = useContext(UserContext);
-  const { isAuthenticated, Logout } = userContext;
-
+  const { isAuthenticated, Logout, LoadUser } = userContext;
+  useEffect(() => {
+    LoadUser();
+    console.log("ver");
+  }, []);
   return (
     <div className="navbar-container">
       <div className="navbar-container-left">
