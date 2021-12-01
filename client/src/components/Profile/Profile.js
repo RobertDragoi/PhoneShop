@@ -16,8 +16,7 @@ const Profile = () => {
       await getUserOrders(id);
     };
     getUserOrdersAPI(user?._id);
-  }, [user?._id]);
-
+  }, []);
   return (
     <div class="container">
       <div class="row">
@@ -70,9 +69,18 @@ const Profile = () => {
                     </div>
                   </div>
                 ))}
-                <div className="row my-2 text-center text-capitalize">
+                <div className="row my-3 text-center text-capitalize">
                   <div className="col-10 mx-auto col-lg-2">
-                    <strong> Total : {order.price} Lei</strong>
+                    <strong> Total comandă: {order.price} Lei</strong>
+                  </div>
+                  <div className="col-10 mx-auto col-lg-2">
+                    <p> Nume : {order.billingInfo.name}</p>
+                  </div>
+                  <div className="col-10 mx-auto col-lg-2">
+                    <p> Telefon : {order.billingInfo.phone}</p>
+                  </div>
+                  <div className="col-10 mx-auto col-lg-2">
+                    <p> Adresă : {order.billingInfo.address} </p>
                   </div>
                 </div>
               </div>

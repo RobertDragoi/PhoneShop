@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import UserContext from "../UserState/userContext";
 import {
   faSignOutAlt,
@@ -14,9 +14,9 @@ import "./Navbar.scss";
 const Navbar = () => {
   const userContext = useContext(UserContext);
   const { isAuthenticated, Logout, LoadUser } = userContext;
+  const history = useHistory();
   useEffect(() => {
     LoadUser();
-    console.log("ver");
   }, []);
   return (
     <div className="navbar-container">
@@ -41,7 +41,10 @@ const Navbar = () => {
               </div>
               <div
                 className="navbar-item-content-item"
-                onClick={() => Logout()}
+                onClick={() => {
+                  history.push("/shop");
+                  Logout();
+                }}
               >
                 <div className="navbar-link">
                   <FontAwesomeIcon color="white" icon={faSignOutAlt} />
