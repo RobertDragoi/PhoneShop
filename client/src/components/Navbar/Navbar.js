@@ -14,7 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Navbar.scss";
 const Navbar = () => {
   const userContext = useContext(UserContext);
-  const { isAuthenticated, Logout, LoadUser } = userContext;
+  const { user, isAuthenticated, Logout, LoadUser } = userContext;
   const history = useHistory();
   useEffect(() => {
     if (Cookies.get("token")) {
@@ -31,7 +31,7 @@ const Navbar = () => {
           {isAuthenticated ? (
             <div className="navbar-item-content">
               <div className="navbar-item-content-item">
-                <Link className="navbar-link" to="/profile">
+                <Link className="navbar-link" to={`/profile/${user?._id}`}>
                   <FontAwesomeIcon color="white" icon={faUserAlt} />
                   Profil
                 </Link>

@@ -14,7 +14,7 @@ const Summary = () => {
           <div className="col-10 mx-auto col-lg-2">
             <img
               alt="img"
-              src={product.product.img}
+              src={`${process.env.PUBLIC_URL}/${product.product.img}`}
               style={{ width: "5rem", heigth: "5rem" }}
               className="img-fluid"
             ></img>

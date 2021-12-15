@@ -40,7 +40,6 @@ const UserState = (props) => {
       dispatch({ type: LOGIN_SUCCES, payload: res.data });
       LoadUser();
     } catch (error) {
-      console.log(error.response.data.msg);
       dispatch({ type: LOGIN_FAIL, payload: error.response.data.msg });
     }
   };
