@@ -1,7 +1,8 @@
 import React, { createElement } from "react";
 import { Route, Redirect } from "react-router-dom";
+import Cookies from "js-cookie";
 const PrivateRoute = ({ component, ...rest }) => {
-  const isLogged = localStorage.getItem("token");
+  const isLogged = Cookies.get("token");
 
   return (
     <Route

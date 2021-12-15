@@ -116,27 +116,27 @@ export default function CartTotals() {
                   <div>
                     <input
                       onChange={onChange}
-                      class="form-check-input"
+                      className="form-check-input"
                       type="radio"
                       name="payOption"
                       id="1"
                       value="cash"
                       required
                     />
-                    <label class="form-check-label" for="1">
+                    <label className="form-check-label" for="1">
                       Numerar
                     </label>
                   </div>
                   <div>
                     <input
                       onChange={onChange}
-                      class="form-check-input"
+                      className="form-check-input"
                       type="radio"
                       name="payOption"
                       id="2"
                       value="credit"
                     />
-                    <label class="form-check-label" for="2">
+                    <label className="form-check-label" for="2">
                       Card de credit/debit
                     </label>
                   </div>

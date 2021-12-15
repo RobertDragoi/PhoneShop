@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
+import Cookies from "js-cookie";
 import UserContext from "../UserState/userContext";
 import {
   faSignOutAlt,
@@ -16,7 +17,9 @@ const Navbar = () => {
   const { isAuthenticated, Logout, LoadUser } = userContext;
   const history = useHistory();
   useEffect(() => {
-    LoadUser();
+    if (Cookies.get("token")) {
+      LoadUser();
+    }
   }, []);
   return (
     <div className="navbar-container">

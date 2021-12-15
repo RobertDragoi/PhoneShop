@@ -9,9 +9,9 @@ const Modal = (props) => {
   const { clearCart } = productContext;
   const { order } = orderContext;
   return (
-    <div class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
+    <div className="modal">
+      <div className="modal-content">
+        <span className="close">&times;</span>
         <p>Some text in the Modal..</p>
       </div>
     </div>

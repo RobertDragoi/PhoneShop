@@ -7,17 +7,18 @@ import {
   USER_LOADED,
   LOGOUT,
 } from "../../types";
+import Cookies from "js-cookie";
 export default (state, action) => {
   switch (action.type) {
     case LOGIN_SUCCES:
     case REGISTER_SUCCES:
-      localStorage.setItem("token", action.payload);
+      Cookies.set("token", action.payload);
       return { ...state, token: action.payload, isAuthenticated: true };
     case USER_LOADED:
       return { ...state, user: action.payload, isAuthenticated: true };
     case LOGIN_FAIL:
     case REGISTER_FAIL:
-      localStorage.removeItem("token");
+      Cookies.remove("token");
       return {
         ...state,
         token: null,
@@ -28,7 +29,7 @@ export default (state, action) => {
     case CLEAR_ERRORS:
       return { ...state, error: null };
     case LOGOUT:
-      localStorage.removeItem("token");
+      Cookies.remove("token");
       return {
         ...state,
         token: null,

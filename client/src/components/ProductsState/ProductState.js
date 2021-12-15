@@ -1,4 +1,5 @@
 import React, { useReducer } from "react";
+import Cookies from "js-cookie";
 import ProductContext from "./productContext";
 import ProductReducer from "./productReducer";
 import axios from "axios";
@@ -17,7 +18,7 @@ import {
 const ProductState = (props) => {
   const initialState = {
     products: [],
-    cart: JSON.parse(localStorage.getItem("cart")),
+    cart: Cookies.get("cart") ? JSON.parse(Cookies.get("cart")) : [],
     loading: null,
     detail: null,
     cartPrice: 0,
@@ -79,7 +80,7 @@ const ProductState = (props) => {
   const clearCart = () => {
     try {
       dispatch({ type: CLEAR_CART });
-      localStorage.removeItem("cart");
+      Cookies.remove("cart");
     } catch (error) {
       dispatch({ type: PRODUCT_ERROR, payload: error.response.data.msg });
     }
@@ -113,10 +114,7 @@ const ProductState = (props) => {
     let sum = 0;
     state.cart.forEach((product) => (sum += product.total));
     dispatch({ type: CART_PRICE, payload: sum });
-    setTimeout(
-      () => localStorage.setItem("cart", JSON.stringify(state.cart)),
-      1000
-    );
+    setTimeout(() => Cookies.set("cart", JSON.stringify(state.cart)), 1000);
     console.log("total price added");
   };
   return (

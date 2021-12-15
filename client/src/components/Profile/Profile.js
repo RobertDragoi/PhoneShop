@@ -18,8 +18,8 @@ const Profile = () => {
     getUserOrdersAPI(user?._id);
   }, []);
   return (
-    <div class="container">
-      <div class="row">
+    <div className="container">
+      <div className="row">
         <div className="col-2"></div>
         <div className="col-8">
           <div className="profile-container">
