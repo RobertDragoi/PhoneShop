@@ -1,21 +1,26 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import UserContext from "../UserState/userContext";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  loginOperation,
+  clearErrorsOperation,
+} from "../../state/operations/userOperations";
 import AlertContext from "../AlertState/alertContext";
 import Alerts from "../Alerts";
 import "./Login.scss";
 const Login = (props) => {
-  const userContext = useContext(UserContext);
+  const dispatch = useDispatch();
   const alertContext = useContext(AlertContext);
-  const { isAuthenticated, Login, error, clearErrors } = userContext;
+  const { isAuthenticated, error } = useSelector((state) => state.user);
   const { setAlert } = alertContext;
+
   useEffect(() => {
     if (isAuthenticated === true) {
       props.history.push("/");
     }
     if (error) {
       setAlert(error, "danger");
-      clearErrors();
+      dispatch(clearErrorsOperation());
     }
   });
   const [user, setUser] = useState({
@@ -29,7 +34,7 @@ const Login = (props) => {
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    Login({ email, password });
+    dispatch(loginOperation({ email, password }));
   };
   return (
     <div className="w-50 mx-auto my-4 p-4 card container">

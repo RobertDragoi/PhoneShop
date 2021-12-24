@@ -1,20 +1,17 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router";
-import UserContext from "../UserState/userContext";
-import OrderContext from "../OrderState/orderContext";
+import { useSelector, useDispatch } from "react-redux";
+import { getUserOrdersOperation } from "../../state/operations/orderOperations";
 import "./Profile.scss";
+
 const Profile = () => {
-  const userContext = useContext(UserContext);
-  const orderContext = useContext(OrderContext);
-  const { user } = userContext;
-  const { userOrders, getUserOrders } = orderContext;
+  const { user } = useSelector((state) => state.user);
+  const { userOrders } = useSelector((state) => state.order);
   const { id } = useParams();
+  const dispatch = useDispatch();
   useEffect(() => {
-    const getUserOrdersAPI = async (id) => {
-      await getUserOrders(id);
-    };
-    getUserOrdersAPI(id);
-  }, []);
+    dispatch(getUserOrdersOperation(id));
+  }, [id]);
   const convertDate = (dateStr) => {
     const date = new Date(dateStr);
     return date.toDateString();

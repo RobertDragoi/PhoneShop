@@ -1,21 +1,25 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import UserContext from "../UserState/userContext";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  registerOperation,
+  clearErrorsOperation,
+} from "../../state/operations/userOperations";
 import AlertContext from "../AlertState/alertContext";
 import Alerts from "../Alerts";
 import "./Register.scss";
 const Register = (props) => {
-  const userContext = useContext(UserContext);
+  const dispatch = useDispatch();
   const alertContext = useContext(AlertContext);
-  const { error, isAuthenticated, Register, clearErrors } = userContext;
+  const { isAuthenticated, error } = useSelector((state) => state.user);
   const { setAlert } = alertContext;
   useEffect(() => {
     if (isAuthenticated === true) {
       props.history.push("/");
     }
-    if (error === "User already exists!") {
+    if (error) {
       setAlert(error, "danger");
-      clearErrors();
+      dispatch(clearErrorsOperation());
     }
   });
   const [user, setUser] = useState({
@@ -33,7 +37,7 @@ const Register = (props) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    Register({ name, email, age, address, password });
+    dispatch(registerOperation({ name, email, age, address, password }));
   };
 
   return (

@@ -1,22 +1,21 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  getDetailProductOperation,
+  addProductOperation,
+} from "../../state/operations/productOperations";
 import { Link, useParams, useHistory } from "react-router-dom";
-import ProductContext from "../ProductsState/productContext";
-import UserContext from "../UserState/userContext";
 import "./Details.scss";
+
 const Details = () => {
-  const productContext = useContext(ProductContext);
-  const userContext = useContext(UserContext);
-  const { cart, detail, loading, getProductDetail, addProduct } =
-    productContext;
-  const { isAuthenticated } = userContext;
+  const { cart, detail, loading } = useSelector((state) => state.product);
+  const { isAuthenticated } = useSelector((state) => state.user);
   const { id } = useParams();
   const history = useHistory();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchProductDetail = async (id) => {
-      await getProductDetail(id);
-    };
-    fetchProductDetail(id);
+    dispatch(getDetailProductOperation(id));
   }, [id]);
   return (
     <div className="container">
@@ -57,21 +56,14 @@ const Details = () => {
                       Logare
                     </Link>
                   ) : cart.some((e) => e._id === detail._id) ? (
-                    <button
-                      disabled
-                      className="details-container-button"
-                      onClick={() => {
-                        addProduct();
-                        history.push("/cart");
-                      }}
-                    >
+                    <button disabled className="details-container-button">
                       Adaugat în coș
                     </button>
                   ) : (
                     <button
                       className="details-container-button"
                       onClick={() => {
-                        addProduct();
+                        dispatch(addProductOperation(id));
                         history.push("/cart");
                       }}
                     >

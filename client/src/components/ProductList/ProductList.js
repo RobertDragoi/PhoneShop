@@ -1,15 +1,16 @@
-import React, { useContext, useEffect } from "react";
-import Cookies from "js-cookie";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getProductsOperation } from "../../state/operations/productOperations";
 import Product from "../Product/Product";
 import "./ProductList.scss";
-import ProductContext from "../ProductsState/productContext";
+
 const ProductList = () => {
-  const productContext = useContext(ProductContext);
-  const { products, getProducts } = productContext;
+  const dispatch = useDispatch();
+  const { products } = useSelector((state) => state.product);
 
   useEffect(() => {
     if (products.length === 0) {
-      getProducts();
+      dispatch(getProductsOperation());
     }
   }, []);
   return (

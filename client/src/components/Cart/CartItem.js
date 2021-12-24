@@ -1,8 +1,12 @@
-import React, { useContext } from "react";
-import ProductContext from "../ProductsState/productContext";
-export default function CartItem(props) {
-  const productContext = useContext(ProductContext);
-  const { removeProduct, increment, decrement } = productContext;
+import React from "react";
+import { useDispatch } from "react-redux";
+import {
+  removeProductOperation,
+  incrementProductOperation,
+  decrementProductOperation,
+} from "../../state/operations/productOperations";
+const CartItem = (props) => {
+  const dispatch = useDispatch();
   const { _id, title, img, price, count, total } = props.item;
 
   return (
@@ -26,7 +30,7 @@ export default function CartItem(props) {
               </span>
             ) : (
               <span
-                onClick={() => decrement(_id)}
+                onClick={() => dispatch(decrementProductOperation(_id))}
                 className="btn btn-black mx-1"
               >
                 -
@@ -34,7 +38,10 @@ export default function CartItem(props) {
             )}
 
             <span className="btn btn-black mx-1">{count}</span>
-            <span onClick={() => increment(_id)} className="btn btn-black mx-1">
+            <span
+              onClick={() => dispatch(incrementProductOperation(_id))}
+              className="btn btn-black mx-1"
+            >
               +
             </span>
           </div>
@@ -44,7 +51,7 @@ export default function CartItem(props) {
         <div className="cart-icon">
           <i
             onClick={() => {
-              removeProduct(_id);
+              dispatch(removeProductOperation(_id));
             }}
             className="fas fa-trash"
           ></i>
@@ -55,4 +62,5 @@ export default function CartItem(props) {
       </div>
     </div>
   );
-}
+};
+export default CartItem;

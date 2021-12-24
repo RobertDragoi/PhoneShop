@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-import OrderContext from "../OrderState/orderContext";
+import React from "react";
+import { useSelector } from "react-redux";
 import "./Summary.scss";
+
 const Summary = () => {
-  const orderContext = useContext(OrderContext);
-  const { order } = orderContext;
+  const { order } = useSelector((state) => state.order);
   return (
     <div>
       {order.products.map((product, index) => (

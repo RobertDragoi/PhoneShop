@@ -1,7 +1,11 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import Cookies from "js-cookie";
-import UserContext from "../UserState/userContext";
+import {
+  loadUserOperation,
+  logoutOperation,
+} from "../../state/operations/userOperations";
 import {
   faSignOutAlt,
   faCartPlus,
@@ -13,12 +17,13 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Navbar.scss";
 const Navbar = () => {
-  const userContext = useContext(UserContext);
-  const { user, isAuthenticated, Logout, LoadUser } = userContext;
+  const dispatch = useDispatch();
+  const { user, isAuthenticated } = useSelector((state) => state.user);
   const history = useHistory();
+
   useEffect(() => {
     if (Cookies.get("token")) {
-      LoadUser();
+      dispatch(loadUserOperation());
     }
   }, []);
   return (
@@ -46,7 +51,7 @@ const Navbar = () => {
                 className="navbar-item-content-item"
                 onClick={() => {
                   history.push("/shop");
-                  Logout();
+                  dispatch(logoutOperation());
                 }}
               >
                 <div className="navbar-link">

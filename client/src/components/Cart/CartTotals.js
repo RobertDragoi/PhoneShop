@@ -1,16 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import ProductContext from "../ProductsState/productContext";
-import UserContext from "../UserState/userContext";
-import OrderContext from "../OrderState/orderContext";
-export default function CartTotals() {
-  const productContext = useContext(ProductContext);
-  const userContext = useContext(UserContext);
-  const orderContext = useContext(OrderContext);
-  const { cart, cartPrice, clearCart } = productContext;
-  const { user } = userContext;
-  const { sendOrder } = orderContext;
+import { useSelector, useDispatch } from "react-redux";
+import { clearCartOperation } from "../../state/operations/productOperations";
+import { sendOrderOperation } from "../../state/operations/orderOperations";
+const CartTotals = () => {
+  const { user } = useSelector((state) => state.user);
+  const { cart, cartPrice } = useSelector((state) => state.product);
   const history = useHistory();
+  const dispatch = useDispatch();
   const products = cart.map((product) => ({
     count: product.count,
     product: product._id,
@@ -30,9 +27,9 @@ export default function CartTotals() {
   };
   const onSubmit = async (e) => {
     e.preventDefault();
-    await sendOrder(user._id, fields, products, cartPrice);
+    dispatch(sendOrderOperation(user._id, fields, products, cartPrice));
     setTimeout(() => {
-      clearCart();
+      dispatch(clearCartOperation());
       history.push(`/summary`);
     }, 2000);
   };
@@ -47,7 +44,7 @@ export default function CartTotals() {
                 <button
                   className="btn btn-outline-danger text-uppercase mb-3 px-5"
                   type="button"
-                  onClick={() => clearCart()}
+                  onClick={() => dispatch(clearCartOperation())}
                 >
                   Golește Cos
                 </button>
@@ -155,4 +152,6 @@ export default function CartTotals() {
       </div>
     </div>
   );
-}
+};
+
+export default CartTotals;
