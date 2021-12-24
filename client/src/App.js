@@ -12,27 +12,24 @@ import Login from "./components/Login/Login";
 import Profile from "./components/Profile/Profile";
 import Summary from "./components/Summary/Summary";
 import PrivateRoute from "./components/PrivateRoute";
-import AlertState from "./components/AlertState/AlertState";
 import { Provider } from "react-redux";
 import store from "./state/store";
 const App = () => {
   return (
     <Provider store={store}>
       <React.Fragment>
-        <AlertState>
-          <Navbar />
-          <Switch>
-            <Redirect exact from="/" to="/shop" />
-            <Route exact path="/shop" component={ProductList} />
-            <Route path="/details/:id" component={Details} />
-            <PrivateRoute exact path="/cart" component={Cart} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/login" component={Login} />
-            <PrivateRoute exact path="/profile/:id" component={Profile} />
-            <PrivateRoute exact path="/summary" component={Summary} />
-            <Route component={Default} />
-          </Switch>
-        </AlertState>
+        <Navbar />
+        <Switch>
+          <Redirect exact from="/" to="/shop" />
+          <Route exact path="/shop" component={ProductList} />
+          <Route path="/details/:id" component={Details} />
+          <PrivateRoute exact path="/cart" component={Cart} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/login" component={Login} />
+          <PrivateRoute exact path="/profile/:id" component={Profile} />
+          <PrivateRoute exact path="/summary" component={Summary} />
+          <Route component={Default} />
+        </Switch>
       </React.Fragment>
     </Provider>
   );

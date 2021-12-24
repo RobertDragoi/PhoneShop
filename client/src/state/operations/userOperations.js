@@ -24,7 +24,7 @@ export const loginOperation = (formData) => async (dispatch) => {
     dispatch(loginAction(res.data));
     dispatch(loadUserOperation());
   } catch (error) {
-    dispatch(loginErrorAction(error.response.data.msg));
+    dispatch(loginErrorAction(error.response.data));
   }
 };
 
@@ -43,7 +43,7 @@ export const registerOperation = (formData) => async (dispatch) => {
     dispatch(registerAction(res.data));
     dispatch(loadUserOperation());
   } catch (error) {
-    dispatch(registerErrorAction(error.response.data.msg));
+    dispatch(registerErrorAction(error.response.data));
   }
 };
 
@@ -55,7 +55,7 @@ export const loadUserOperation = () => async (dispatch) => {
     const res = await axios.get("http://localhost:5000/api/login");
     dispatch(loadUserAction(res.data));
   } catch (error) {
-    dispatch(loginErrorAction(error.response.data.msg));
+    dispatch(loginErrorAction(error.response.data));
   }
 };
 

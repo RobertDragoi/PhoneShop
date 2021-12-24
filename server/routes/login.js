@@ -20,11 +20,11 @@ router.post(
 
     try {
       if (!user) {
-        return res.status(400).json({ msg: "Invalid email!" });
+        return res.status(400).send("Email invalid!");
       }
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) {
-        return res.status(400).json({ msg: "Invalid password!" });
+        return res.status(400).send("Parolă invalidă!");
       }
       const payload = {
         user: {
@@ -42,7 +42,7 @@ router.post(
       );
     } catch (error) {
       console.error(error.message);
-      res.status(500).send(`Error logging`);
+      res.status(500).send(`Eroare la logare!`);
     }
   }
 );
@@ -53,7 +53,7 @@ router.get("/", middleware, async (req, res) => {
     res.json(user);
   } catch (error) {
     console.error(error.message);
-    res.status(500).send("Error getting the user");
+    res.status(500).send("Utilizator negăsit!");
   }
 });
 module.exports = router;

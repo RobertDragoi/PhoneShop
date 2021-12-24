@@ -25,7 +25,9 @@ router.post(
     try {
       let user = await User.findOne({ email });
       if (user) {
-        return res.status(400).json({ msg: "User already exists!" });
+        return res
+          .status(400)
+          .send("Un cont cu această adresă de email există deja!");
       }
       user = new User({ name, email, age, address, password });
       const salt = await bcrypt.genSalt(10);
@@ -47,7 +49,7 @@ router.post(
       );
     } catch (error) {
       console.error(error.message);
-      res.status(500).send(`Error registering user ${email}!`);
+      res.status(500).send(`Eroare înregistrare cont ${email}!`);
     }
   }
 );

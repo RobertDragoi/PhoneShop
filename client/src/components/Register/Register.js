@@ -1,24 +1,24 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   registerOperation,
   clearErrorsOperation,
 } from "../../state/operations/userOperations";
-import AlertContext from "../AlertState/alertContext";
+import { setAlertOperation } from "../../state/operations/alertOperations";
 import Alerts from "../Alerts";
 import "./Register.scss";
+
 const Register = (props) => {
   const dispatch = useDispatch();
-  const alertContext = useContext(AlertContext);
   const { isAuthenticated, error } = useSelector((state) => state.user);
-  const { setAlert } = alertContext;
+
   useEffect(() => {
     if (isAuthenticated === true) {
       props.history.push("/");
     }
     if (error) {
-      setAlert(error, "danger");
+      dispatch(setAlertOperation(error, "danger"));
       dispatch(clearErrorsOperation());
     }
   });
