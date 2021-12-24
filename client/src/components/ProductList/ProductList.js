@@ -1,16 +1,20 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getProductsOperation } from "../../state/operations/productOperations";
+import { setAlertOperation } from "../../state/operations/alertOperations";
 import Product from "../Product/Product";
 import "./ProductList.scss";
 
 const ProductList = () => {
   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.product);
+  const { products, error } = useSelector((state) => state.product);
 
   useEffect(() => {
     if (products.length === 0) {
       dispatch(getProductsOperation());
+    }
+    if (error) {
+      dispatch(setAlertOperation(error, "danger"));
     }
   }, []);
   return (
