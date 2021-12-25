@@ -55,7 +55,7 @@ const Details = () => {
                     <Link className="details-container-button" to="/login">
                       Logare
                     </Link>
-                  ) : cart.some((e) => e._id === detail._id) ? (
+                  ) : cart.some((e) => e._id === detail?._id) ? (
                     <button disabled className="details-container-button">
                       Adaugat în coș
                     </button>

@@ -1,10 +1,11 @@
-import { ORDER_SENT, USER_ORDERS_LOADED } from "../../types";
+import { ORDER_SENT, USER_ORDERS_LOADED, GET_ORDER } from "../../types";
 const initialState = {
   order: null,
   userOrders: [],
 };
 const orderReducer = (state = initialState, action) => {
   switch (action.type) {
+    case GET_ORDER:
     case ORDER_SENT:
       return {
         ...state,

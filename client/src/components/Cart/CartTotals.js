@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { clearCartOperation } from "../../state/operations/productOperations";
 import { sendOrderOperation } from "../../state/operations/orderOperations";
+import "./Cart.scss";
 const CartTotals = () => {
   const { user } = useSelector((state) => state.user);
   const { cart, cartPrice } = useSelector((state) => state.product);
-  const history = useHistory();
+  const { order } = useSelector((state) => state.order);
   const dispatch = useDispatch();
   const products = cart.map((product) => ({
     count: product.count,
@@ -28,10 +29,6 @@ const CartTotals = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     dispatch(sendOrderOperation(user._id, fields, products, cartPrice));
-    setTimeout(() => {
-      dispatch(clearCartOperation());
-      history.push(`/summary`);
-    }, 2000);
   };
   const { name, address, phone } = fields;
   return (
@@ -120,7 +117,7 @@ const CartTotals = () => {
                       value="cash"
                       required
                     />
-                    <label className="form-check-label" for="1">
+                    <label className="form-check-label" htmlFor="1">
                       Numerar
                     </label>
                   </div>
@@ -133,7 +130,7 @@ const CartTotals = () => {
                       id="2"
                       value="credit"
                     />
-                    <label className="form-check-label" for="2">
+                    <label className="form-check-label" htmlFor="2">
                       Card de credit/debit
                     </label>
                   </div>
@@ -148,6 +145,12 @@ const CartTotals = () => {
               </form>
             )}
           </div>
+          {order && (
+            <Link to={`/summary/${order._id}`} className="cart-title">
+              <h2 className="cart-title-left">Vizualizare</h2>
+              <h2 className="cart-title-right">comandă</h2>
+            </Link>
+          )}
         </div>
       </div>
     </div>

@@ -27,7 +27,7 @@ const App = () => {
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <PrivateRoute exact path="/profile/:id" component={Profile} />
-          <PrivateRoute exact path="/summary" component={Summary} />
+          <PrivateRoute exact path="/summary/:id" component={Summary} />
           <Route component={Default} />
         </Switch>
       </React.Fragment>

@@ -17,6 +17,21 @@ router.post("/", async (req, res) => {
     res.status(500).send(`Error registering order!`);
   }
 });
+
+router.get("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Order.findById(id)
+      .populate([
+        { path: "customer", populate: "customer" },
+        { path: "products", populate: "product" },
+      ])
+      .exec((err, order) => res.json(order));
+  } catch (error) {
+    res.status(500).send(`Error getting orders!`);
+  }
+});
+
 router.get("/user/:id", async (req, res) => {
   try {
     const { id } = req.params;

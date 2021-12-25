@@ -1,12 +1,21 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useParams } from "react-router";
+import { useSelector, useDispatch } from "react-redux";
+import { getOrderOperation } from "../../state/operations/orderOperations";
+import { clearCartOperation } from "../../state/operations/productOperations";
 import "./Summary.scss";
 
 const Summary = () => {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(clearCartOperation());
+    dispatch(getOrderOperation(id));
+  }, []);
   const { order } = useSelector((state) => state.order);
   return (
     <div>
-      {order.products.map((product, index) => (
+      {order?.products?.map((product, index) => (
         <div
           key={`summary_${index}`}
           className="row my-2 text-center text-capitalize"
