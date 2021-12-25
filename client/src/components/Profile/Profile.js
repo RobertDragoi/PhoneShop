@@ -43,6 +43,10 @@ const Profile = () => {
             userOrders?.map((order, index) => (
               <div key={`order_${index}`} className="profile-container">
                 <div className="profile-container-item">
+                  <div className="product-list-title">
+                    <h4 className="product-list-title-left">Comanda numărul</h4>
+                    <h4 className="product-list-title-right">{order._id}</h4>
+                  </div>
                   {order?.products.map((product, index2) => (
                     <div
                       key={`order_${index}_item${index2}`}
