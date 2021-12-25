@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getOrderOperation } from "../../state/operations/orderOperations";
 import { clearCartOperation } from "../../state/operations/productOperations";
 import "./Summary.scss";
+import { Link } from "react-router-dom";
 
 const Summary = () => {
   const { id } = useParams();
@@ -43,6 +44,10 @@ const Summary = () => {
         <h1 className="summary-title-left">Comanda a fost plasată cu</h1>
         <h1 className="summary-title-right">succes!</h1>
       </div>
+      <Link to={`/shop`} className="summary-title">
+        <h2 className="summary-title-left">Întoarce-te la</h2>
+        <h2 className="summary-title-right">cumpărături!</h2>
+      </Link>
     </div>
   );
 };
