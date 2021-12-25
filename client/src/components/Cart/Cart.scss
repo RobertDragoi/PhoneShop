@@ -16,3 +16,13 @@
     color: $mainYellow;
   }
 }
+.cart-link {
+  text-decoration: none;
+  color: $mainDark;
+  font-size: medium;
+  &:hover {
+    text-decoration: none;
+    color: $mainBlue;
+    font-size: medium;
+  }
+}

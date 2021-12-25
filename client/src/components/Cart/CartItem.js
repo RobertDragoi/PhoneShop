@@ -1,14 +1,16 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 import {
   removeProductOperation,
   incrementProductOperation,
   decrementProductOperation,
 } from "../../state/operations/productOperations";
+import "./Cart.scss";
 const CartItem = (props) => {
   const dispatch = useDispatch();
   const { _id, title, img, price, count, total } = props.item;
-
+  const history = useHistory();
   return (
     <div className="row my-2 text-center text-capitalize">
       <div className="col-10 mx-auto col-lg-2">
@@ -19,7 +21,11 @@ const CartItem = (props) => {
           className="img-fluid"
         ></img>
       </div>
-      <div className="col-10 mx-auto col-lg-2">{title}</div>
+      <div className="col-10 mx-auto col-lg-2">
+        <Link className="cart-link" to={`/details/${_id}`}>
+          {title}
+        </Link>
+      </div>
       <div className="col-10 mx-auto col-lg-2">{price} Lei</div>
       <div className="col-10 mx-auto col-lg-2 my-2 my-lg-0">
         <div className="d-flex justify-content-center">
