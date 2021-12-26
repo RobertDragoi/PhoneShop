@@ -15,6 +15,7 @@ import axios from "axios";
 export const getProductsOperation = () => async (dispatch) => {
   try {
     console.log("got products");
+    dispatch(loadingProductAction());
     const res = await axios.get("http://localhost:5000/api/shop");
     dispatch(getProductsAction(res.data));
   } catch (error) {

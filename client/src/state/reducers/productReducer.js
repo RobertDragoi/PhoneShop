@@ -27,6 +27,7 @@ const productReducer = (state = initialState, action) => {
     case GET_PRODUCTS:
       return {
         ...state,
+        loading: false,
         products: action.payload,
       };
     case DETAIL_PRODUCT:

@@ -7,7 +7,7 @@ import "./Cart.scss";
 const CartTotals = () => {
   const { user } = useSelector((state) => state.user);
   const { cart, cartPrice } = useSelector((state) => state.product);
-  const { order } = useSelector((state) => state.order);
+  const { order, loading } = useSelector((state) => state.order);
   const dispatch = useDispatch();
   const products = cart.map((product) => ({
     count: product.count,
@@ -145,8 +145,19 @@ const CartTotals = () => {
               </form>
             )}
           </div>
+          {loading && (
+            <div className="d-flex align-items-center justify-content-center">
+              <div
+                className="spinner-border"
+                style={{ width: "12rem", height: "12rem" }}
+                role="status"
+              >
+                <span className="sr-only">Se încarcă..</span>
+              </div>
+            </div>
+          )}
           {order && (
-            <Link to={`/summary/${order._id}`} className="cart-title">
+            <Link to={`/summary/${order?._id}`} className="cart-title">
               <h2 className="cart-title-left">Vizualizare</h2>
               <h2 className="cart-title-right">comandă</h2>
             </Link>
