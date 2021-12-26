@@ -33,15 +33,18 @@
   flex-direction: row;
   justify-content: center;
   gap: 10px;
+  text-decoration: none;
   font-family: "Oswald", sans-serif;
   letter-spacing: 0.3rem;
   padding-top: 10px;
   padding-bottom: 10px;
   text-transform: uppercase;
   &-left {
+    text-decoration: none;
     color: $mainBlue;
   }
   &-right {
+    text-decoration: none;
     color: $mainYellow;
   }
 }

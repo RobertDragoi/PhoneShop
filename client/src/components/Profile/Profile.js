@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserOrdersOperation } from "../../state/operations/orderOperations";
 import "./Profile.scss";
@@ -55,14 +56,14 @@ const Profile = () => {
                 userOrders?.map((order, index) => (
                   <div key={`order_${index}`} className="profile-container">
                     <div className="profile-container-item">
-                      <div className="product-list-title">
-                        <h4 className="product-list-title-left">
-                          Comanda numărul
-                        </h4>
-                        <h4 className="product-list-title-right">
-                          {order._id}
-                        </h4>
-                      </div>
+                      <Link
+                        className="profile-title"
+                        to={`/summary/${order._id}`}
+                      >
+                        <h4 className="profile-title-left">Comanda numărul</h4>
+                        <h4 className="profile-title-right">{order._id}</h4>
+                      </Link>
+
                       {order?.products.map((product, index2) => (
                         <div
                           key={`order_${index}_item${index2}`}
