@@ -5,7 +5,6 @@ import {
   clearOrderOperation,
   getOrderOperation,
 } from "../../state/operations/orderOperations";
-import { clearCartOperation } from "../../state/operations/productOperations";
 import "./Summary.scss";
 import { Link } from "react-router-dom";
 
@@ -13,7 +12,6 @@ const Summary = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(clearCartOperation());
     dispatch(getOrderOperation(id));
   }, []);
   const { order, loading } = useSelector((state) => state.order);

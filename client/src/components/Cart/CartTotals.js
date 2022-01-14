@@ -157,7 +157,13 @@ const CartTotals = () => {
             </div>
           )}
           {order && (
-            <Link to={`/summary/${order?._id}`} className="cart-title">
+            <Link
+              onClick={() =>
+                setTimeout(() => dispatch(clearCartOperation()), 100)
+              }
+              to={`/summary/${order?._id}`}
+              className="cart-title"
+            >
               <h2 className="cart-title-left">Vizualizare</h2>
               <h2 className="cart-title-right">comandă</h2>
             </Link>
