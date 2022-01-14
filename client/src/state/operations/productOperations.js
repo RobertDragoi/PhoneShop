@@ -10,6 +10,7 @@ import {
   cartPriceAction,
   loadingProductAction,
 } from "../actions/productActions";
+import { clearOrderAction } from "../actions/orderActions";
 import axios from "axios";
 
 export const getProductsOperation = () => async (dispatch) => {
@@ -37,6 +38,7 @@ export const getDetailProductOperation = (id) => async (dispatch) => {
 export const addProductOperation = () => async (dispatch) => {
   dispatch(addProductAction());
   dispatch(cartPriceOperation());
+  dispatch(clearOrderAction());
 };
 export const removeProductOperation = (id) => async (dispatch) => {
   dispatch(removeProductAction(id));

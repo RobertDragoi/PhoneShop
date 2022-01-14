@@ -10,7 +10,6 @@ import {
 import Cookies from "js-cookie";
 
 const initialState = {
-  token: Cookies.get("token"),
   isAuthenticated: null,
   user: null,
   error: null,
@@ -19,16 +18,15 @@ const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_SUCCES:
     case REGISTER_SUCCES:
-      Cookies.set("token", action.payload, { expires: 1 / 24 });
-      return { ...state, token: action.payload, isAuthenticated: true };
+      Cookies.set("auth-token", action.payload, { expires: 1 / 24 });
+      return { ...state, isAuthenticated: true };
     case USER_LOADED:
       return { ...state, user: action.payload, isAuthenticated: true };
     case LOGIN_FAIL:
     case REGISTER_FAIL:
-      Cookies.remove("token");
+      Cookies.remove("auth-token");
       return {
         ...state,
-        token: null,
         isAuthenticated: false,
         user: null,
         error: action.payload,
@@ -36,10 +34,9 @@ const userReducer = (state = initialState, action) => {
     case CLEAR_ERRORS:
       return { ...state, error: null };
     case LOGOUT:
-      Cookies.remove("token");
+      Cookies.remove("auth-token");
       return {
         ...state,
-        token: null,
         user: null,
         isAuthenticated: false,
       };

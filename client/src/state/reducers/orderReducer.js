@@ -2,6 +2,7 @@ import {
   ORDER_SENT,
   USER_ORDERS_LOADED,
   GET_ORDER,
+  CLEAR_ORDER,
   LOADING_ORDER,
 } from "../../types";
 const initialState = {
@@ -17,6 +18,11 @@ const orderReducer = (state = initialState, action) => {
         ...state,
         order: action.payload,
         loading: false,
+      };
+    case CLEAR_ORDER:
+      return {
+        ...state,
+        order: null,
       };
     case USER_ORDERS_LOADED:
       return {

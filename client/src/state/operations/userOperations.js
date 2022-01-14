@@ -48,8 +48,8 @@ export const registerOperation = (formData) => async (dispatch) => {
 };
 
 export const loadUserOperation = () => async (dispatch) => {
-  if (Cookies.get("token")) {
-    setAuthToken(Cookies.get("token"));
+  if (Cookies.get("auth-token")) {
+    setAuthToken(Cookies.get("auth-token"));
   }
   try {
     const res = await axios.get("http://localhost:5000/api/login");

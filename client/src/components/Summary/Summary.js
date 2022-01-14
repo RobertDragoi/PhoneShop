@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
-import { getOrderOperation } from "../../state/operations/orderOperations";
+import {
+  clearOrderOperation,
+  getOrderOperation,
+} from "../../state/operations/orderOperations";
 import { clearCartOperation } from "../../state/operations/productOperations";
 import "./Summary.scss";
 import { Link } from "react-router-dom";
@@ -59,7 +62,13 @@ const Summary = () => {
             </div>
           ))}
 
-          <Link to={`/shop`} className="summary-title">
+          <Link
+            onClick={() =>
+              setTimeout(() => dispatch(clearOrderOperation()), 100)
+            }
+            to={`/shop`}
+            className="summary-title"
+          >
             <h2 className="summary-title-left">Întoarce-te la</h2>
             <h2 className="summary-title-right">cumpărături!</h2>
           </Link>

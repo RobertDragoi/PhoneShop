@@ -22,7 +22,7 @@ const Navbar = () => {
   const history = useHistory();
 
   useEffect(() => {
-    if (Cookies.get("token")) {
+    if (Cookies.get("auth-token")) {
       dispatch(loadUserOperation());
     }
   }, []);
