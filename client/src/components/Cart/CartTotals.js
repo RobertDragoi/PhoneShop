@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 import { clearCartOperation } from "../../state/operations/productOperations";
 import { sendOrderOperation } from "../../state/operations/orderOperations";
 import "./Cart.scss";
 const CartTotals = () => {
   const { user } = useSelector((state) => state.user);
   const { cart, cartPrice } = useSelector((state) => state.product);
-  const { order, loading } = useSelector((state) => state.order);
+  const { loading } = useSelector((state) => state.order);
   const dispatch = useDispatch();
+  const history = useHistory();
   const products = cart.map((product) => ({
     count: product.count,
     product: product._id,
@@ -26,9 +28,11 @@ const CartTotals = () => {
     console.log(e.target.value);
     setFields({ ...fields, [e.target.name]: e.target.value });
   };
-  const onSubmit = async (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(sendOrderOperation(user._id, fields, products, cartPrice));
+    dispatch(
+      sendOrderOperation(user._id, fields, products, cartPrice, history)
+    );
   };
   const { name, address, phone } = fields;
   return (
@@ -155,18 +159,6 @@ const CartTotals = () => {
                 <span className="sr-only">Se încarcă..</span>
               </div>
             </div>
-          )}
-          {order && (
-            <Link
-              onClick={() =>
-                setTimeout(() => dispatch(clearCartOperation()), 100)
-              }
-              to={`/summary/${order?._id}`}
-              className="cart-title"
-            >
-              <h2 className="cart-title-left">Vizualizare</h2>
-              <h2 className="cart-title-right">comandă</h2>
-            </Link>
           )}
         </div>
       </div>

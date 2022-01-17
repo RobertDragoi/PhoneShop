@@ -5,9 +5,10 @@ import {
   loadingOrderAction,
   clearOrderAction,
 } from "../actions/orderActions";
+import { clearCartAction } from "../actions/productActions";
 import axios from "axios";
 export const sendOrderOperation =
-  (customer, billingInfo, products, price) => async (dispatch) => {
+  (customer, billingInfo, products, price, history) => async (dispatch) => {
     dispatch(loadingOrderAction());
     const res = await axios.post("http://localhost:5000/api/order", {
       customer,
@@ -16,6 +17,8 @@ export const sendOrderOperation =
       price,
     });
     dispatch(sendOrderAction(res.data));
+    history.push(`/summary/${res.data._id}`);
+    dispatch(clearCartAction());
   };
 
 export const getOrderOperation = (id) => async (dispatch) => {
