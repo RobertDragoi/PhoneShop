@@ -3,9 +3,19 @@
   "name": "PhoneShop | Your place for a new phone",
   "icons": [
     {
-      "src": "logo.png",
+      "src": "favicon.ico",
+      "type": "image/x-icon",
+      "sizes": "48x48"
+    },
+    {
+      "src": "logo192.png",
       "type": "image/png",
-      "sizes": "200x200"
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
   "start_url": "/shop",
