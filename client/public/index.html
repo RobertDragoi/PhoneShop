@@ -45,13 +45,16 @@
             .register("./serviceworker.js")
             .then(
               function (registration) {
-                console.log(
-                  "Worker registration successful",
-                  registration.scope
-                );
+                registration.onupdatefound = () => {
+                  let newSW = registration.installing;
+                  newSW.postMessage("Update");
+                };
+                if (registration.active) {
+                  registration.active.postMessage("Service worker is active");
+                }
               },
               function (err) {
-                console.log("Worker registration failed", err);
+                console.log("Service worker registration failed", err);
               }
             )
             .catch(function (err) {
