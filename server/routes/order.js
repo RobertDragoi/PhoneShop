@@ -13,7 +13,6 @@ router.post("/", async (req, res) => {
       ])
       .exec((err, order) => res.json(order));
   } catch (error) {
-    console.log(error);
     res.status(500).send(`Error registering order!`);
   }
 });

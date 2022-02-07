@@ -25,7 +25,6 @@ const CartTotals = () => {
     payOption: "cash",
   });
   const onChange = (e) => {
-    console.log(e.target.value);
     setFields({ ...fields, [e.target.name]: e.target.value });
   };
   const onSubmit = (e) => {
