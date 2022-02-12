@@ -7,6 +7,7 @@ import {
   clearErrorsAction,
   logoutAction,
 } from "../actions/userActions";
+import { clearCartAction } from "../actions/productActions";
 import Cookies from "js-cookie";
 import axios from "axios";
 export const loginOperation = (formData) => async (dispatch) => {
@@ -61,6 +62,7 @@ export const loadUserOperation = () => async (dispatch) => {
 
 export const logoutOperation = () => async (dispatch) => {
   dispatch(logoutAction());
+  dispatch(clearCartAction());
 };
 
 export const clearErrorsOperation = () => async (dispatch) => {

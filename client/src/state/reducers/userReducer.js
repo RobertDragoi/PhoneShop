@@ -25,6 +25,7 @@ const userReducer = (state = initialState, action) => {
     case LOGIN_FAIL:
     case REGISTER_FAIL:
       Cookies.remove("auth-token");
+      Cookies.remove("cart");
       return {
         ...state,
         isAuthenticated: false,
@@ -35,6 +36,7 @@ const userReducer = (state = initialState, action) => {
       return { ...state, error: null };
     case LOGOUT:
       Cookies.remove("auth-token");
+      Cookies.remove("cart");
       return {
         ...state,
         user: null,
