@@ -40,11 +40,11 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <script>
       if ("serviceWorker" in navigator) {
-        window.addEventListener("load", function () {
+        window.addEventListener("load", () => {
           navigator.serviceWorker
             .register("./serviceworker.js")
             .then(
-              function (registration) {
+              (registration) => {
                 registration.onupdatefound = () => {
                   let newSW = registration.installing;
                   newSW.postMessage("Update");
@@ -53,11 +53,11 @@
                   registration.active.postMessage("Service worker is active");
                 }
               },
-              function (err) {
+              (err) => {
                 console.log("Service worker registration failed", err);
               }
             )
-            .catch(function (err) {
+            .catch((err) => {
               console.log(err);
             });
         });

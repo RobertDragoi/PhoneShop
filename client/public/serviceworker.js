@@ -1,5 +1,12 @@
-const CACHE_NAME = "version-1";
-const urlsToCache = ["index.html", "offline.html"];
+const CACHE_NAME = "phoneshop-1.0.0";
+const urlsToCache = [
+  "index.html",
+  "offline.html",
+  "favicon.ico",
+  "logo192.png",
+  "logo512.png",
+  "manifest.json",
+];
 const self = this;
 
 // Install SW
@@ -32,9 +39,19 @@ self.addEventListener("activate", (event) => {
 
 // Listen for requests
 self.addEventListener("fetch", (event) => {
+  //Cache with network update
   event.respondWith(
-    caches.match(event.request).then(() => {
-      return fetch(event.request).catch(() => caches.match("offline.html"));
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.match(event.request).then((response) => {
+        if (event.request.url.startsWith("chrome-extension")) return;
+
+        let updatedResponse = fetch(event.request).then((newResponse) => {
+          cache.put(event.request, newResponse.clone());
+          return newResponse;
+        });
+
+        return response || updatedResponse;
+      });
     })
   );
 });

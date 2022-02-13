@@ -72,7 +72,7 @@ const productReducer = (state = initialState, action) => {
       auxCart = [...state.cart];
       auxCart.forEach((product, i) => {
         if (product._id === action.payload) auxCart[i].count++;
-        auxCart[i].total = parseFloat(auxCart[i].price) * auxCart[i].count;
+        auxCart[i].total = (auxCart[i].price * auxCart[i].count).toFixed(2);
       });
       return {
         ...state,
@@ -82,7 +82,7 @@ const productReducer = (state = initialState, action) => {
       auxCart = [...state.cart];
       auxCart.forEach((product, i) => {
         if (product._id === action.payload) auxCart[i].count--;
-        auxCart[i].total = parseFloat(auxCart[i].price) * auxCart[i].count;
+        auxCart[i].total = (auxCart[i].price * auxCart[i].count).toFixed(2);
       });
       return {
         ...state,
@@ -90,11 +90,11 @@ const productReducer = (state = initialState, action) => {
       };
     case CART_PRICE:
       let sum = 0;
-      state.cart.forEach((product) => (sum += product.total));
+      state.cart.forEach((product) => (sum += parseFloat(product.total)));
       setTimeout(() => Cookies.set("cart", JSON.stringify(state.cart)), 500);
       return {
         ...state,
-        cartPrice: sum,
+        cartPrice: sum.toFixed(2),
       };
 
     case PRODUCT_ERROR:
