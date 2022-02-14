@@ -24,7 +24,7 @@ const ProductList = () => {
           <h1 className="product-list-title-left">Produse</h1>
         </div>
         {loading ? (
-          <div className="d-flex align-items-center justify-content-center mt-5">
+          <div className="d-flex align-items-center justify-content-between mt-5">
             <div
               className="spinner-border"
               style={{ width: "12rem", height: "12rem" }}
@@ -34,7 +34,7 @@ const ProductList = () => {
             </div>
           </div>
         ) : (
-          <div className="row ">
+          <div className="row justify-content-between">
             {products.map((product) => {
               return (
                 <Product
