@@ -148,17 +148,6 @@ const CartTotals = () => {
               </form>
             )}
           </div>
-          {loading && (
-            <div className="d-flex align-items-center justify-content-center">
-              <div
-                className="spinner-border"
-                style={{ width: "12rem", height: "12rem" }}
-                role="status"
-              >
-                <span className="sr-only">Se încarcă..</span>
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </div>
