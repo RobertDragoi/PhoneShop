@@ -1,4 +1,9 @@
 @import "../variables.scss";
+.product-list-container {
+  width: 100%;
+  padding-left:55px;
+  padding-right: 55px;
+}
 .product-list-title {
   display: flex;
   flex-direction: row;

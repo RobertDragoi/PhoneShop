@@ -31,7 +31,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### `npm run dev`
 
-Runs both the back-end server [http://localhost:5000] and the front-end app [http://localhost:3000] parts.
+Runs both the back-end server [http://localhost:8080] and the front-end app [http://localhost:3000] parts.
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).

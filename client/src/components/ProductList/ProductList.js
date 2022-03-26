@@ -19,7 +19,7 @@ const ProductList = () => {
   }, []);
   return (
     <React.Fragment>
-      <div className="container">
+      <div className="container-fluid">
         <div className="product-list-title">
           <h1 className="product-list-title-left">Produse</h1>
         </div>
@@ -34,7 +34,7 @@ const ProductList = () => {
             </div>
           </div>
         ) : (
-          <div className="row ">
+          <div className="d-flex flex-wrap justify-content-start">
             {products.map((product) => {
               return (
                 <Product

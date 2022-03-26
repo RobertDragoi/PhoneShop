@@ -16,7 +16,7 @@ import axios from "axios";
 export const getProductsOperation = () => async (dispatch) => {
   try {
     dispatch(loadingProductAction());
-    const res = await axios.get("http://localhost:5000/api/shop");
+    const res = await axios.get("http://localhost:8080/api/shop");
     dispatch(getProductsAction(res.data));
   } catch (error) {
     dispatch(productErrorAction(error.response.data.msg));
@@ -26,7 +26,7 @@ export const getProductsOperation = () => async (dispatch) => {
 export const getDetailProductOperation = (id) => async (dispatch) => {
   try {
     dispatch(loadingProductAction());
-    const res = await axios.get(`http://localhost:5000/api/shop/${id}`);
+    const res = await axios.get(`http://localhost:8080/api/shop/${id}`);
     dispatch(getDetailProductAction(res.data));
   } catch (error) {
     dispatch(productErrorAction(error.response.data.msg));

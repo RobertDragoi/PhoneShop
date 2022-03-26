@@ -10,7 +10,7 @@ import axios from "axios";
 export const sendOrderOperation =
   (customer, billingInfo, products, price, history) => async (dispatch) => {
     dispatch(loadingOrderAction());
-    const res = await axios.post("http://localhost:5000/api/order", {
+    const res = await axios.post("http://localhost:8080/api/order", {
       customer,
       billingInfo,
       products,
@@ -23,7 +23,7 @@ export const sendOrderOperation =
 
 export const getOrderOperation = (id) => async (dispatch) => {
   dispatch(loadingOrderAction());
-  const res = await axios.get(`http://localhost:5000/api/order/${id}`);
+  const res = await axios.get(`http://localhost:8080/api/order/${id}`);
   dispatch(getOrderAction(res.data));
 };
 
@@ -32,6 +32,6 @@ export const clearOrderOperation = () => async (dispatch) => {
 };
 export const getUserOrdersOperation = (id) => async (dispatch) => {
   dispatch(loadingOrderAction());
-  const res = await axios.get(`http://localhost:5000/api/order/user/${id}`);
+  const res = await axios.get(`http://localhost:8080/api/order/user/${id}`);
   dispatch(getUserOrdersAction(res.data));
 };

@@ -18,7 +18,7 @@ export const loginOperation = (formData) => async (dispatch) => {
   };
   try {
     const res = await axios.post(
-      "http://localhost:5000/api/login",
+      "http://localhost:8080/api/login",
       formData,
       config
     );
@@ -37,7 +37,7 @@ export const registerOperation = (formData) => async (dispatch) => {
   };
   try {
     const res = await axios.post(
-      "http://localhost:5000/api/register",
+      "http://localhost:8080/api/register",
       formData,
       config
     );
@@ -53,7 +53,7 @@ export const loadUserOperation = () => async (dispatch) => {
     setAuthToken(Cookies.get("auth-token"));
   }
   try {
-    const res = await axios.get("http://localhost:5000/api/login");
+    const res = await axios.get("http://localhost:8080/api/login");
     dispatch(loadUserAction(res.data));
   } catch (error) {
     dispatch(loginErrorAction(error.response.data));
