@@ -7,6 +7,7 @@ import {
 } from "../../state/operations/userOperations";
 import { setAlertOperation } from "../../state/operations/alertOperations";
 import Alerts from "../Alerts";
+import Input from "../Input";
 import "./Register.scss";
 
 const Register = (props) => {
@@ -45,80 +46,46 @@ const Register = (props) => {
       <h1 className="register-title">Înregistrare</h1>
       <form onSubmit={onSubmit}>
         <div className="form-row">
-          <div className="form-group col-md-12">
-            <label className="control-label" htmlFor="name">
-              Nume<span className="text-primary">*</span>:
-            </label>
-            <input
-              onChange={onChange}
-              type="text"
-              className="form-control"
-              name="name"
-              value={name}
-              required
-              placeholder="Nume"
-            />
-          </div>
-          <div className="form-group col-md-12">
-            <label className="control-label" htmlFor="email">
-              Email<span className="text-primary">*</span>:
-            </label>
-            <input
-              onChange={onChange}
-              type="email"
-              className="form-control"
-              name="email"
-              value={email}
-              required
-              placeholder="Email"
-            />
-          </div>
-        </div>
-        <div className="form-group col-md-12">
-          <label className="control-label" htmlFor="Address">
-            Vârstă:
-          </label>
-          <div>
-            <input
-              onChange={onChange}
-              type="text"
-              className="form-control"
-              name="age"
-              value={age}
-              placeholder="Vârstă"
-            />
-          </div>
-        </div>
-        <div className="form-group col-md-12">
-          <label className="control-label" htmlFor="Address">
-            Adresă:
-          </label>
-          <div>
-            <input
-              onChange={onChange}
-              type="text"
-              className="form-control"
-              name="address"
-              value={address}
-              placeholder="Adresă"
-            />
-          </div>
-        </div>
-        <div className="form-group col-md-12">
-          <label className="control-label">
-            Parolă<span className="text-primary">*</span>:
-          </label>
-          <div>
-            <input
-              onChange={onChange}
-              type="password"
-              className="form-control"
-              name="password"
-              value={password}
-              required
-              placeholder="Parolă"
-            />
-          </div>
+          <Input
+            onChange={onChange}
+            type="text"
+            name="name"
+            value={name}
+            placeholder="Nume"
+            required
+          />
+          <Input
+            onChange={onChange}
+            type="email"
+            name="email"
+            value={email}
+            placeholder="Email"
+            required
+          />
+
+          <Input
+            onChange={onChange}
+            type="text"
+            name="age"
+            value={age}
+            placeholder="Vârstă"
+            required
+          />
+          <Input
+            onChange={onChange}
+            type="text"
+            name="address"
+            value={address}
+            placeholder="Adresă"
+          />
+          <Input
+            onChange={onChange}
+            type="password"
+            name="password"
+            value={password}
+            placeholder="Parolă"
+            required
+          />
         </div>
         <div className="pt-2">
           <input type="submit" className="register-button" value="Submit" />

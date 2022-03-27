@@ -5,8 +5,9 @@ import {
   clearOrderOperation,
   getOrderOperation,
 } from "../../state/operations/orderOperations";
-import "./Summary.scss";
 import { Link } from "react-router-dom";
+import { Spinner } from "../Spinner";
+import "./Summary.scss";
 
 const Summary = () => {
   const { id } = useParams();
@@ -18,15 +19,7 @@ const Summary = () => {
   return (
     <>
       {loading ? (
-        <div className="d-flex align-items-center justify-content-center mt-5">
-          <div
-            className="spinner-border"
-            style={{ width: "12rem", height: "12rem" }}
-            role="status"
-          >
-            <span className="sr-only">Se încarcă..</span>
-          </div>
-        </div>
+        <Spinner/>
       ) : (
         <div>
           <div className="summary-title">

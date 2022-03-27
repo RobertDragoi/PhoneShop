@@ -7,6 +7,7 @@ import {
 } from "../../state/operations/userOperations";
 import { setAlertOperation } from "../../state/operations/alertOperations";
 import Alerts from "../Alerts";
+import Input from "../Input";
 import "./Login.scss";
 
 const Login = (props) => {
@@ -40,38 +41,24 @@ const Login = (props) => {
       <h1 className="login-title">Logare</h1>
       <form onSubmit={onSubmit}>
         <div className="form-row">
-          <div className="form-group col-md-12">
-            <label className="control-label" htmlFor="email">
-              Email<span className="text-primary">*</span>:
-            </label>
-            <input
-              onChange={onChange}
-              type="email"
-              className="form-control"
-              name="email"
-              value={email}
-              required
-              placeholder="Email"
-            />
-          </div>
+          <Input
+            onChange={onChange}
+            type="email"
+            name="email"
+            value={email}
+            placeholder="Email"
+            required
+          />
+          <Input
+            onChange={onChange}
+            type="password"
+            name="password"
+            value={password}
+            placeholder="Parolă"
+            required
+          />
         </div>
 
-        <div className="form-group col-md-12">
-          <label className="control-label">
-            Parolă<span className="text-primary">*</span>:
-          </label>
-          <div>
-            <input
-              onChange={onChange}
-              type="password"
-              className="form-control"
-              name="password"
-              value={password}
-              required
-              placeholder="Parolă"
-            />
-          </div>
-        </div>
         <div className="pt-2">
           <input type="submit" className="login-button" value="Submit" />
         </div>

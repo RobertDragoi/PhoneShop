@@ -5,6 +5,7 @@ import {
   addProductOperation,
 } from "../../state/operations/productOperations";
 import { Link, useParams, useHistory } from "react-router-dom";
+import { Spinner } from "../Spinner";
 import "./Details.scss";
 
 const Details = () => {
@@ -20,15 +21,7 @@ const Details = () => {
   return (
     <div className="container">
       {loading ? (
-        <div className="d-flex align-items-center justify-content-center mt-5">
-          <div
-            className="spinner-border"
-            style={{ width: "12rem", height: "12rem" }}
-            role="status"
-          >
-            <span className="sr-only">Se încarcă..</span>
-          </div>
-        </div>
+        <Spinner/>
       ) : (
         <div className="row">
           <div>
