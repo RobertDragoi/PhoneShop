@@ -6,6 +6,11 @@ let OrderSchema = new mongoose.Schema({
     address: { type: String, required: true },
     phone: { type: String, required: true },
     payOption: { type: String, required: true },
+    creditOption: {
+      number: { type: String, default: "" },
+      owner: { type: String, default: "" },
+      cvv: { type: String, default: "" },
+    },
   },
   products: [
     {
