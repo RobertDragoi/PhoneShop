@@ -19,12 +19,12 @@ const createOrder = async (req, res) => {
 const getOrder = async (req, res) => {
   try {
     const { id } = req.params;
-    await Order.find({ customer: id })
+    await Order.findById(id)
       .populate([
         { path: "customer", populate: "customer" },
         { path: "products", populate: "product" },
       ])
-      .exec((err, orders) => res.json(orders));
+      .exec((err, order) => res.json(order));
   } catch (error) {
     res.status(500).send(`Error getting orders!`);
   }

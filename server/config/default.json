@@ -1,4 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://Robert:HOTmail12@e-commerce-phone.eqzjk.mongodb.net/test?retryWrites=true&w=majority",
+  "mongoURI": "mongodb+srv://Robert:HOTmail12@e-commerce-phone.eqzjk.mongodb.net/PhoneShop?retryWrites=true&w=majority",
   "jwtSecret": "secret"
 }
