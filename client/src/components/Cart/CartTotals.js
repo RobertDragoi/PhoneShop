@@ -4,11 +4,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import { clearCartOperation } from "../../state/operations/productOperations";
 import { sendOrderOperation } from "../../state/operations/orderOperations";
+import CartBilling from "./CartBilling";
 import "./Cart.scss";
 const CartTotals = () => {
   const { user } = useSelector((state) => state.user);
   const { cart, cartPrice } = useSelector((state) => state.product);
-  const { loading } = useSelector((state) => state.order);
   const dispatch = useDispatch();
   const history = useHistory();
   const products = cart.map((product) => ({
@@ -23,9 +23,19 @@ const CartTotals = () => {
     address: "",
     phone: "",
     payOption: "cash",
+    creditOption: {
+      number: "",
+      owner: "",
+      cvv: "",
+    },
   });
   const onChange = (e) => {
     setFields({ ...fields, [e.target.name]: e.target.value });
+  };
+  const onChange2 = (e) => {
+    let auxCreditOption = { ...creditOption, [e.target.name]: e.target.value };
+    setFields({ ...fields, creditOption: auxCreditOption });
+    console.log(creditOption);
   };
   const onSubmit = (e) => {
     e.preventDefault();
@@ -33,7 +43,7 @@ const CartTotals = () => {
       sendOrderOperation(user._id, fields, products, cartPrice, history)
     );
   };
-  const { name, address, phone } = fields;
+  const { name, address, phone, payOption, creditOption } = fields;
   return (
     <div>
       <div className="container">
@@ -66,86 +76,16 @@ const CartTotals = () => {
               )}
             </div>
             {billing && (
-              <form onSubmit={onSubmit}>
-                <div className="form-row">
-                  <div className="col-md-6">
-                    <label className="control-label">
-                      Nume<span className="text-primary">*</span>:
-                    </label>
-                    <input
-                      onChange={onChange}
-                      value={name}
-                      type="text"
-                      className="form-control"
-                      name="name"
-                      required
-                    />
-                  </div>
-                  <div className=" col-md-6">
-                    <label className="control">
-                      Număr de telefon<span className="text-primary">*</span>:
-                    </label>
-                    <input
-                      onChange={onChange}
-                      value={phone}
-                      type="text"
-                      className="form-control"
-                      name="phone"
-                      required
-                    />
-                  </div>
-                  <div className=" col-md-6">
-                    <label className="control">
-                      Adresă<span className="text-primary">*</span>:
-                    </label>
-                    <input
-                      onChange={onChange}
-                      value={address}
-                      type="text"
-                      className="form-control"
-                      name="address"
-                      required
-                    />
-                  </div>
-                  <label className="control">
-                    Metodă de plată<span className="text-primary">*</span>:
-                  </label>
-                  <div>
-                    <input
-                      onChange={onChange}
-                      className="form-check-input"
-                      type="radio"
-                      name="payOption"
-                      id="1"
-                      value="cash"
-                      required
-                    />
-                    <label className="form-check-label" htmlFor="1">
-                      Numerar
-                    </label>
-                  </div>
-                  <div>
-                    <input
-                      onChange={onChange}
-                      className="form-check-input"
-                      type="radio"
-                      name="payOption"
-                      id="2"
-                      value="credit"
-                    />
-                    <label className="form-check-label" htmlFor="2">
-                      Card de credit/debit
-                    </label>
-                  </div>
-                  <div className="pt-2">
-                    <input
-                      type="submit"
-                      className="btn btn-outline-primary text-uppercase mb-3 px-5"
-                      value="Trimite comandă"
-                    />
-                  </div>
-                </div>
-              </form>
+              <CartBilling
+                onSubmit={onSubmit}
+                onChange={onChange}
+                onChange2={onChange2}
+                name={name}
+                phone={phone}
+                address={address}
+                payOption={payOption}
+                creditOption={creditOption}
+              />
             )}
           </div>
         </div>
