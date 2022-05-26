@@ -94,8 +94,8 @@ const CartBilling = ({
             <Input
               onChange={onChange2}
               type="text"
-              name="ccv"
-              value={creditOption.ccv}
+              name="cvv"
+              value={creditOption.cvv}
               placeholder="CCV"
               size="6"
               required
