@@ -25,8 +25,8 @@ const Details = () => {
       ) : (
         <div className="row">
           <div>
-            <div className="col-2"></div>
-            <div className="col-8">
+            <div className="col-1"></div>
+            <div className="col-10 mx-auto">
               <div className="details-container">
                 <div className="details-container-row">
                   <img
@@ -39,13 +39,13 @@ const Details = () => {
                   <h1 className="details-container-row-title">
                     {detail?.title}
                   </h1>
-                  <p className="details-container-row-text">
+                  <p className="details-container-row-text-alt">
                     {detail?.company}
                   </p>
                   <p className="details-container-row-text">
                     {detail?.description}
                   </p>
-                  <p className="details-container-row-text">
+                  <p className="details-container-row-text-alt">
                     {detail?.price} Lei
                   </p>
                   {!isAuthenticated ? (
@@ -70,7 +70,7 @@ const Details = () => {
                 </div>
               </div>
             </div>
-            <div className="col-2"></div>
+            <div className="col-1"></div>
           </div>
         </div>
       )}

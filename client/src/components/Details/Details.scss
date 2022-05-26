@@ -8,6 +8,8 @@
   padding-bottom: 20px;
   &-image {
     margin: 10px 10px 10px 10px;
+  height:auto;
+  width: auto;
   }
   &-row {
     display: flex;
@@ -17,11 +19,22 @@
       padding-left: 5px;
       padding-bottom: 5px;
       text-transform: uppercase;
+      font-weight: 800;
     }
     &-text {
+      font-family: "Oswald", sans-serif;
+      font-size: 19px;
       padding-top: 5px;
       padding-left: 5px;
       border-top: 1px solid $mainBlue;
+      &-alt {
+        font-family: "Oswald", sans-serif;
+        font-size: 21px;
+        padding-top: 5px;
+        padding-left: 5px;
+        border-top: 1px solid $mainBlue;
+        font-weight: 600;
+      }
     }
   }
   &-button {
@@ -39,5 +52,11 @@
       background: $mainYellow;
       color: $mainWhite;
     }
+  }
+}
+@media (max-width: 480px) {
+  .details-container{
+    display: flex;
+    flex-direction: column;
   }
 }
