@@ -36,6 +36,7 @@ const Navbar = () => {
       }
       if (seconds === 0) {
           if (minutes === 0) {
+              dispatch(loadUserOperation());
               clearInterval(myInterval)
           } else {
               dispatch(setMinutesOperation(minutes - 1));
@@ -98,7 +99,7 @@ const Navbar = () => {
             </div>
           )}
         </div>
-        <div className="navbar-item">
+        <div >
         { minutes === 0 && seconds === 0
             ? null
             : <p className="navbar-text"> Vei fi delogat în {minutes}:{seconds < 10 ?  `0${seconds}` : seconds}</p> 
