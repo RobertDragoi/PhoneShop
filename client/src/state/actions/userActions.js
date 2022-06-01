@@ -6,6 +6,8 @@ import {
   CLEAR_ERRORS,
   USER_LOADED,
   LOGOUT,
+  SET_MINUTES,
+  SET_SECONDS,
 } from "../../types";
 export const registerAction = (values) => ({
   type: REGISTER_SUCCES,
@@ -31,3 +33,5 @@ export const clearErrorsAction = () => ({
   type: CLEAR_ERRORS,
 });
 export const logoutAction = () => ({ type: LOGOUT });
+export const setMinutesAction = (values) => ({ type: SET_MINUTES,payload:values})
+export const setSecondsAction = (values)=> ({type:SET_SECONDS,payload: values})

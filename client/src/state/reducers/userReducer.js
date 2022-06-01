@@ -6,19 +6,39 @@ import {
   CLEAR_ERRORS,
   USER_LOADED,
   LOGOUT,
+  SET_MINUTES,
+  SET_SECONDS
 } from "../../types";
 import Cookies from "js-cookie";
+import getSeconds from 'date-fns/getSeconds'
+import getMinutes from 'date-fns/getMinutes'
+
+const calculateMinutes =(tokenDuration)=>{
+  let date=new Date();
+  let tokenDate=new Date(tokenDuration);
+  return getMinutes(tokenDate.getTime()-date.getTime());
+}
+const calculateSeconds =(tokenDuration)=>{
+  let date=new Date();
+  let tokenDate=new Date(tokenDuration);
+  return getSeconds(tokenDate.getTime()-date.getTime());
+}
 
 const initialState = {
-  isAuthenticated: null,
+  isAuthenticated: false,
   user: null,
   error: null,
+  minutes: Cookies.get("token-duration") ?calculateMinutes(Cookies.get("token-duration")):0,
+  seconds: Cookies.get("token-duration")?calculateSeconds(Cookies.get("token-duration")):0,
 };
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_SUCCES:
     case REGISTER_SUCCES:
       Cookies.set("auth-token", action.payload, { expires: 1 / 24 });
+      let date=new Date();
+      date.setTime(date.getTime() + 1 * 60 * 60 * 1000);
+      Cookies.set("token-duration",date);
       return { ...state, isAuthenticated: true };
     case USER_LOADED:
       return { ...state, user: action.payload, isAuthenticated: true };
@@ -36,12 +56,19 @@ const userReducer = (state = initialState, action) => {
       return { ...state, error: null };
     case LOGOUT:
       Cookies.remove("auth-token");
+      Cookies.remove("token-duration");
       Cookies.remove("cart");
       return {
         ...state,
         user: null,
         isAuthenticated: false,
+        minutes:0,
+        seconds:0
       };
+    case SET_MINUTES:
+      return { ...state,minutes: action.payload}
+    case SET_SECONDS:
+      return { ...state, seconds: action.payload}
     default:
       return state;
   }
