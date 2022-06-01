@@ -10,7 +10,7 @@ import "./Cart.scss";
 const CartItem = (props) => {
   const dispatch = useDispatch();
   const { _id, title, img, price, count, total } = props.item;
-  const history = useHistory();
+
   return (
     <div className="row my-2 text-center text-capitalize">
       <div className="col-10 mx-auto col-lg-2">

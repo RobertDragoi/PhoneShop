@@ -6,7 +6,7 @@ import { clearCartOperation } from "../../state/operations/productOperations";
 import { sendOrderOperation } from "../../state/operations/orderOperations";
 import CartBilling from "./CartBilling";
 import "./Cart.scss";
-const CartTotals = () => {
+export const CartTotals = () => {
   const { user } = useSelector((state) => state.user);
   const { cart, cartPrice } = useSelector((state) => state.product);
   const dispatch = useDispatch();
@@ -93,5 +93,3 @@ const CartTotals = () => {
     </div>
   );
 };
-
-export default CartTotals;

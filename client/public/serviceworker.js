@@ -1,7 +1,6 @@
 const CACHE_NAME = "phoneshop-1.0.0";
 const urlsToCache = [
   "index.html",
-  "offline.html",
   "favicon.ico",
   "logo192.png",
   "logo512.png",

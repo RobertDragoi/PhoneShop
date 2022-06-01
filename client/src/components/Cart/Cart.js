@@ -2,10 +2,10 @@ import React, { Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { cartPriceOperation } from "../../state/operations/productOperations";
 import { clearOrderOperation } from "../../state/operations/orderOperations";
-import CartColumns from "./CartColumns";
+import {CartColumns} from "./CartColumns";
 import EmptyCart from "./EmptyCart";
-import CartList from "./CartList";
-import CartTotals from "./CartTotals";
+import {CartList} from "./CartList";
+import {CartTotals} from "./CartTotals";
 import "./Cart.scss";
 const Cart = () => {
   const dispatch = useDispatch();

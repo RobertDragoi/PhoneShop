@@ -7,6 +7,7 @@ import {
 } from "../../state/operations/orderOperations";
 import { Link } from "react-router-dom";
 import { Spinner } from "../Spinner";
+import { SummaryItem } from "./SummaryItem";
 import "./Summary.scss";
 
 const Summary = () => {
@@ -19,7 +20,7 @@ const Summary = () => {
   return (
     <>
       {loading ? (
-        <Spinner/>
+        <Spinner />
       ) : (
         <div>
           <div className="summary-title">
@@ -27,32 +28,8 @@ const Summary = () => {
             <h1 className="summary-title-right">succes!</h1>
           </div>
           {order?.products?.map((product, index) => (
-            <div
-              key={`summary_${index}`}
-              className="row my-2 text-center text-capitalize"
-            >
-              <div className="col-10 mx-auto col-lg-2">
-                <img
-                  alt="img"
-                  src={`${process.env.PUBLIC_URL}/${product.product.img}`}
-                  style={{ width: "5rem", heigth: "5rem" }}
-                  className="img-fluid"
-                ></img>
-              </div>
-              <div className="col-10 mx-auto col-lg-2">
-                {product.product.title}
-              </div>
-
-              <div className="col-10 mx-auto col-lg-2">
-                <strong> Bucăți : {product.count} </strong>
-              </div>
-
-              <div className="col-10 mx-auto col-lg-2">
-                <strong> Total produs : {product.total} Lei</strong>
-              </div>
-            </div>
+            <SummaryItem product={product} index={index} />
           ))}
-
           <Link
             onClick={() =>
               setTimeout(() => dispatch(clearOrderOperation()), 100)

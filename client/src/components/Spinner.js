@@ -1,5 +1,5 @@
 import React from "react";
-export function Spinner({}) {
+export const Spinner = () => {
   return (
     <div className="d-flex align-items-center justify-content-center mt-5">
       <div
@@ -14,4 +14,4 @@ export function Spinner({}) {
       </div>
     </div>
   );
-}
+};

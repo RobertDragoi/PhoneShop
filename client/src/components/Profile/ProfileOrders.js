@@ -2,9 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Profile.scss";
 
-export function ProfileOrders({
-  userOrders,  
-}) {
+export const ProfileOrders = ({ userOrders }) => {
   return (
     <div>
       {userOrders &&
@@ -64,4 +62,4 @@ export function ProfileOrders({
         ))}
     </div>
   );
-}
+};
