@@ -5,8 +5,6 @@ import Cookies from "js-cookie";
 import {
   loadUserOperation,
   logoutOperation,
-  setMinutesOperation,
-  setSecondsOperation
 } from "../../state/operations/userOperations";
 import {
   faSignOutAlt,
@@ -19,36 +17,16 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Navbar.scss";
 const Navbar = () => {
-
   const dispatch = useDispatch();
   const history = useHistory();
-  const { user, isAuthenticated,minutes,seconds } = useSelector((state) => state.user);
+  const { user, isAuthenticated } = useSelector((state) => state.user);
 
   useEffect(() => {
     if (Cookies.get("auth-token")) {
       dispatch(loadUserOperation());
     }
   }, [dispatch]);
-  useEffect(() => {
-  
-    let myInterval = setInterval(() => {
-      if (seconds > 0) {
-          dispatch(setSecondsOperation(seconds - 1));
-      }
-      if (seconds === 0 ) {
-          if (minutes === 0) {
-              dispatch(logoutOperation());
-              clearInterval(myInterval)
-          } else {
-              dispatch(setMinutesOperation(minutes - 1));
-              dispatch(setSecondsOperation(59));
-          }
-      } 
-  }, 1000)
-  return ()=> {
-      clearInterval(myInterval);
-    };
-  });
+
   return (
     <div className="navbar-container">
       <div className="navbar-container-left">
@@ -99,12 +77,6 @@ const Navbar = () => {
               </div>
             </div>
           )}
-        </div>
-        <div >
-        { minutes === 0 && seconds === 0
-            ? null
-            : <p className="navbar-text"> Vei fi delogat în {minutes}:{seconds < 10 ?  `0${seconds}` : seconds}</p> 
-        }
         </div>
       </div>
       {isAuthenticated ? (

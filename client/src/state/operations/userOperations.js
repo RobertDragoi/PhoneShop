@@ -6,8 +6,6 @@ import {
   loadUserAction,
   clearErrorsAction,
   logoutAction,
-  setMinutesAction,
-  setSecondsAction,
 } from "../actions/userActions";
 import { clearCartAction } from "../actions/productActions";
 import Cookies from "js-cookie";
@@ -26,8 +24,6 @@ export const loginOperation = (formData) => async (dispatch) => {
     );
     dispatch(loginAction(res.data));
     dispatch(loadUserOperation());
-    dispatch(setMinutesOperation(60));
-    dispatch(setSecondsOperation(0));
   } catch (error) {
     dispatch(loginErrorAction(error.response.data));
   }
@@ -47,8 +43,6 @@ export const registerOperation = (formData) => async (dispatch) => {
     );
     dispatch(registerAction(res.data));
     dispatch(loadUserOperation());
-    dispatch(setMinutesOperation(60));
-    dispatch(setSecondsOperation(0));
   } catch (error) {
     dispatch(registerErrorAction(error.response.data));
   }
@@ -69,14 +63,6 @@ export const loadUserOperation = () => async (dispatch) => {
 export const logoutOperation = () => async (dispatch) => {
   dispatch(logoutAction());
   dispatch(clearCartAction());
-};
-
-export const setMinutesOperation = (minutes) => async (dispatch) => {
-  dispatch(setMinutesAction(minutes));
-};
-
-export const setSecondsOperation = (seconds) => async (dispatch) => {
-  dispatch(setSecondsAction(seconds));
 };
 
 export const clearErrorsOperation = () => async (dispatch) => {
