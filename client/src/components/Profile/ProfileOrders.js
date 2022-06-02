@@ -11,17 +11,15 @@ export const ProfileOrders = ({ userOrders }) => {
           <div key={`order_${index}`} className="profile-container">
             <div className="profile-container-item">
               <Link className="profile-title" to={`/summary/${order._id}`}>
-                <profile className="profile-title-left">
-                  Comanda numărul
-                </profile>
+                <p className="profile-title-left">Comanda numărul</p>
                 <p className="profile-title-right">{order._id}</p>
               </Link>
 
               {order?.products?.map((product, index2) => (
                 <OrderItem
                   product={product}
-                  index={index}
-                  prefix={`profile_order_${index}_item`}
+                  index={index2}
+                  prefix={`order_${index}_item`}
                 />
               ))}
               <div className="row my-3 text-center text-capitalize">

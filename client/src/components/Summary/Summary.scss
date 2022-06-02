@@ -17,3 +17,37 @@
     color: $mainYellow;
   }
 }
+@media (max-width: 768px) {
+  .summary-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &-left {
+      font-size: 15px;
+      text-decoration: none;
+      color: $mainBlue;
+    }
+    &-right {
+      font-size: 15px;
+      text-decoration: none;
+      color: $mainYellow;
+    }
+  }
+}
+@media (max-width: 480px) {
+  .summary-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &-left {
+      font-size: 11px;
+      text-decoration: none;
+      color: $mainBlue;
+    }
+    &-right {
+      font-size: 11px;
+      text-decoration: none;
+      color: $mainYellow;
+    }
+  }
+}
