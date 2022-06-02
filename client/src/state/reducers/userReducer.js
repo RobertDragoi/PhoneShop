@@ -18,7 +18,12 @@ const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_SUCCES:
     case REGISTER_SUCCES:
-      Cookies.set("auth-token", action.payload, { expires: 1 / 24 });
+      Cookies.set("auth-token", action.payload.accessToken, {
+        expires: 1 / 24,
+      });
+      Cookies.set("refresh-token", action.payload.refreshToken, {
+        expires: 720,
+      });
       return {
         ...state,
         isAuthenticated: true,

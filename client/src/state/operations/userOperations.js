@@ -53,7 +53,7 @@ export const loadUserOperation = () => async (dispatch) => {
     setAuthToken(Cookies.get("auth-token"));
   }
   try {
-    const res = await axios.get("http://localhost:8080/api/login");
+    const res = await axios.get("http://localhost:8080/api/user");
     dispatch(loadUserAction(res.data));
   } catch (error) {
     dispatch(loginErrorAction(error.response.data));

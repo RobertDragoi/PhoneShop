@@ -25,31 +25,23 @@ const login = async (req, res) => {
         id: user.id,
       },
     };
-    jwt.sign(
-      payload,
+    const accessToken = await jwt.sign(payload, config.get("jwtSecret"), {
+      expiresIn: 360000,
+    });
+    const refreshToken = await jwt.sign(
+      { ...payload, date: new Date() },
       config.get("jwtSecret"),
-      { expiresIn: 360000 },
-      (err, token) => {
-        if (err) throw err;
-        res.json(token);
+      {
+        expiresIn: "30d",
       }
     );
+    res.json({ accessToken, refreshToken });
   } catch (error) {
     console.error(error.message);
     res.status(500).send(`Eroare la logare!`);
   }
 };
 
-const getUser = async (req, res) => {
-  try {
-    const user = await User.findById(req.user.id).select("-password");
-    res.json(user);
-  } catch (error) {
-    console.error(error.message);
-    res.status(500).send("Utilizator negăsit!");
-  }
-};
 module.exports = {
   login,
-  getUser,
 };
