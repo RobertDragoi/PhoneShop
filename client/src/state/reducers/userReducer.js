@@ -40,9 +40,9 @@ const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_SUCCES:
     case REGISTER_SUCCES:
-      Cookies.set("auth-token", action.payload, { expires: 1 / 24 });
       let date = new Date();
       date.setTime(date.getTime() + 1*60 * 60 * 1000);
+      Cookies.set("auth-token", action.payload, { expires: 1 / 24 });
       localStorage.setItem("token-duration", date);
       return {
         ...state,
@@ -55,7 +55,7 @@ const userReducer = (state = initialState, action) => {
     case LOGIN_FAIL:
     case REGISTER_FAIL:
       Cookies.remove("auth-token");
-      Cookies.remove("cart");
+      localStorage.removeItem("cart");
       return {
         ...state,
         isAuthenticated: false,
@@ -67,7 +67,7 @@ const userReducer = (state = initialState, action) => {
     case LOGOUT:
       Cookies.remove("auth-token");
       localStorage.removeItem("token-duration");
-      Cookies.remove("cart");
+      localStorage.removeItem("cart");
       return {
         ...state,
         user: null,
