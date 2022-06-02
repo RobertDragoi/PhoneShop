@@ -7,7 +7,7 @@ import {
 } from "../../state/operations/orderOperations";
 import { Link } from "react-router-dom";
 import { Spinner } from "../Spinner";
-import { SummaryItem } from "./SummaryItem";
+import { OrderItem } from "../OrderItem";
 import "./Summary.scss";
 
 const Summary = () => {
@@ -28,7 +28,7 @@ const Summary = () => {
             <h1 className="summary-title-right">succes!</h1>
           </div>
           {order?.products?.map((product, index) => (
-            <SummaryItem product={product} index={index} />
+            <OrderItem product={product} index={index} prefix="summary_item" />
           ))}
           <Link
             onClick={() =>

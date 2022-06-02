@@ -1,8 +1,8 @@
 import React from "react";
-export const SummaryItem = ({ product, index }) => {
+export const OrderItem = ({ product, index, prefix }) => {
   return (
     <div
-      key={`summary_${index}`}
+      key={`${prefix}_${index}`}
       className="row my-2 text-center text-capitalize"
     >
       <div className="col-10 mx-auto col-lg-2">

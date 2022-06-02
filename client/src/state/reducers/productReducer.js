@@ -11,10 +11,11 @@ import {
   CART_PRICE,
 } from "../../types";
 
-
 const initialState = {
   products: [],
-  cart: localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [],
+  cart: localStorage.getItem("cart")
+    ? JSON.parse(localStorage.getItem("cart"))
+    : [],
   loading: null,
   detail: null,
   cartPrice: 0,
@@ -61,7 +62,7 @@ const productReducer = (state = initialState, action) => {
         cart: state.cart.filter((product) => product._id !== action.payload),
       };
     case CLEAR_CART:
-      localStorage.remove("cart");
+      localStorage.removeItem("cart");
       return {
         ...state,
         cart: [],
@@ -91,7 +92,10 @@ const productReducer = (state = initialState, action) => {
     case CART_PRICE:
       let sum = 0;
       state.cart.forEach((product) => (sum += parseFloat(product.total)));
-      setTimeout(() => localStorage.setItem("cart", JSON.stringify(state.cart)), 500);
+      setTimeout(
+        () => localStorage.setItem("cart", JSON.stringify(state.cart)),
+        500
+      );
       return {
         ...state,
         cartPrice: sum.toFixed(2),
