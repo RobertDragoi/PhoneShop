@@ -22,8 +22,8 @@ const Profile = () => {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-2"></div>
-        <div className="col-8">
+        <div className="col-1"></div>
+        <div className="col-10">
           <div className="profile-container">
             <ProfilePlaceholder />
             <div className="profile-container-row">
@@ -39,7 +39,7 @@ const Profile = () => {
           </div>
           {loading ? <Spinner /> : <ProfileOrders userOrders={userOrders} />}
         </div>
-        <div className="col-2"></div>
+        <div className="col-1"></div>
       </div>
     </div>
   );
