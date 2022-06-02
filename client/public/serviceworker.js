@@ -43,7 +43,6 @@ self.addEventListener("fetch", (event) => {
     caches.open(CACHE_NAME).then((cache) => {
       return cache.match(event.request).then((response) => {
         if (event.request.url.startsWith("chrome-extension")) return;
-
         let updatedResponse = fetch(event.request).then((newResponse) => {
           cache.put(event.request, newResponse.clone());
           return newResponse;

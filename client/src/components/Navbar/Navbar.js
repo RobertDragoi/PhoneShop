@@ -28,15 +28,16 @@ const Navbar = () => {
     if (Cookies.get("auth-token")) {
       dispatch(loadUserOperation());
     }
-  }, []);
+  }, [dispatch]);
   useEffect(() => {
+  
     let myInterval = setInterval(() => {
       if (seconds > 0) {
           dispatch(setSecondsOperation(seconds - 1));
       }
-      if (seconds === 0) {
+      if (seconds === 0 ) {
           if (minutes === 0) {
-              dispatch(loadUserOperation());
+              dispatch(logoutOperation());
               clearInterval(myInterval)
           } else {
               dispatch(setMinutesOperation(minutes - 1));
@@ -47,7 +48,7 @@ const Navbar = () => {
   return ()=> {
       clearInterval(myInterval);
     };
-  })
+  });
   return (
     <div className="navbar-container">
       <div className="navbar-container-left">
