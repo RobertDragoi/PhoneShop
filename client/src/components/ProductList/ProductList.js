@@ -27,7 +27,7 @@ const ProductList = () => {
         {loading ? (
           <Spinner />
         ) : (
-          <div className="d-flex flex-wrap justify-content-start">
+          <div className="product-list-container">
             {products.map((product) => {
               return (
                 <Product

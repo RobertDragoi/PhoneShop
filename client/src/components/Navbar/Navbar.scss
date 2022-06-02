@@ -1,6 +1,7 @@
 @import "../variables.scss";
 .navbar {
   &-container {
+    width: 100%;
     background-color: $mainBlue;
     display: flex;
     flex-direction: row;
