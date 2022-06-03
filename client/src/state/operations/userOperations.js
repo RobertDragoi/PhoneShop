@@ -6,6 +6,7 @@ import {
   loadUserAction,
   clearErrorsAction,
   logoutAction,
+  refreshTokenAction,
 } from "../actions/userActions";
 import { clearCartAction } from "../actions/productActions";
 import Cookies from "js-cookie";
@@ -66,6 +67,23 @@ export const loadUserOperation = () => async (dispatch) => {
 export const logoutOperation = () => async (dispatch) => {
   dispatch(logoutAction());
   dispatch(clearCartAction());
+};
+export const refreshTokenOperation = () => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "x-refresh-token": Cookies.get("refresh-token"),
+      },
+    };
+    const res = await axios.post(
+      "http://localhost:8080/api/user/refresh",
+      {},
+      config
+    );
+    dispatch(refreshTokenAction(res.data));
+    dispatch(loadUserOperation());
+  } catch (error) {}
 };
 
 export const clearErrorsOperation = () => async (dispatch) => {

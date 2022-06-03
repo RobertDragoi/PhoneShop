@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import {
   loadUserOperation,
   logoutOperation,
+  refreshTokenOperation,
 } from "../../state/operations/userOperations";
 import {
   faSignOutAlt,
@@ -22,10 +23,13 @@ const Navbar = () => {
   const { user, isAuthenticated } = useSelector((state) => state.user);
 
   useEffect(() => {
-    if (Cookies.get("auth-token")) {
+    if (Cookies.get("auth-token") && !isAuthenticated) {
       dispatch(loadUserOperation());
+    } else if (Cookies.get("refresh-token") && !isAuthenticated) {
+      console.log("0-----");
+      dispatch(refreshTokenOperation());
     }
-  }, [dispatch]);
+  });
 
   return (
     <div className="navbar-container">

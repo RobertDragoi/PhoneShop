@@ -6,6 +6,7 @@ import {
   CLEAR_ERRORS,
   USER_LOADED,
   LOGOUT,
+  REFRESH_TOKEN,
 } from "../../types";
 import Cookies from "js-cookie";
 
@@ -45,13 +46,18 @@ const userReducer = (state = initialState, action) => {
     case LOGOUT:
       Cookies.remove("auth-token");
       localStorage.removeItem("cart");
+      Cookies.remove("refresh-token");
       return {
         ...state,
         user: null,
+        error: null,
         isAuthenticated: false,
-        minutes: 0,
-        seconds: 0,
       };
+    case REFRESH_TOKEN:
+      Cookies.set("auth-token", action.payload.accessToken, {
+        expires: 1 / 24,
+      });
+      break;
     default:
       return state;
   }

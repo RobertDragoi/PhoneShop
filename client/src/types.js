@@ -22,3 +22,4 @@ export const GET_ORDER = "GET_ORDER";
 export const CLEAR_ORDER = "CLEAR_ORDER";
 export const LOADING_ORDER = "LOADING_ORDER";
 export const USER_ORDERS_LOADED = "USER_ORDERS_LOADED";
+export const REFRESH_TOKEN = "REFRESH_TOKEN";

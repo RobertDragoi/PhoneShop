@@ -6,6 +6,7 @@ import {
   CLEAR_ERRORS,
   USER_LOADED,
   LOGOUT,
+  REFRESH_TOKEN,
 } from "../../types";
 export const registerAction = (values) => ({
   type: REGISTER_SUCCES,
@@ -29,5 +30,9 @@ export const loadUserAction = (values) => ({
 });
 export const clearErrorsAction = () => ({
   type: CLEAR_ERRORS,
+});
+export const refreshTokenAction = (values) => ({
+  type: REFRESH_TOKEN,
+  payload: values,
 });
 export const logoutAction = () => ({ type: LOGOUT });

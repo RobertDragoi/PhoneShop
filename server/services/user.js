@@ -5,10 +5,10 @@ const User = require("../models/User");
 const refreshToken = async (req, res) => {
   try {
     const token = req.header("x-refresh-token");
-    const decoded = jwt.verify(token, config.get("secret"));
+    const decoded = await jwt.verify(token, config.get("jwtSecret"));
     const payload = {
       user: {
-        id: decoded.id,
+        id: decoded.user.id,
       },
     };
     const accessToken = await jwt.sign(payload, config.get("jwtSecret"), {
