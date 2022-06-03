@@ -22,7 +22,7 @@ const userReducer = (state = initialState, action) => {
         expires: 1 / 24,
       });
       Cookies.set("refresh-token", action.payload.refreshToken, {
-        expires: 720,
+        expires: 30,
       });
       return {
         ...state,

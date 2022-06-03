@@ -49,11 +49,14 @@ export const registerOperation = (formData) => async (dispatch) => {
 };
 
 export const loadUserOperation = () => async (dispatch) => {
-  if (Cookies.get("auth-token")) {
-    setAuthToken(Cookies.get("auth-token"));
-  }
   try {
-    const res = await axios.get("http://localhost:8080/api/user");
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": Cookies.get("auth-token"),
+      },
+    };
+    const res = await axios.get("http://localhost:8080/api/user", config);
     dispatch(loadUserAction(res.data));
   } catch (error) {
     dispatch(loginErrorAction(error.response.data));
@@ -67,11 +70,4 @@ export const logoutOperation = () => async (dispatch) => {
 
 export const clearErrorsOperation = () => async (dispatch) => {
   dispatch(clearErrorsAction());
-};
-const setAuthToken = (token) => {
-  if (token) {
-    axios.defaults.headers.common["x-auth-token"] = token;
-  } else {
-    delete axios.defaults.headers.common["x-auth-token"];
-  }
 };
