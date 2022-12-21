@@ -1,4 +1,0 @@
-{
-  "mongoURI": "mongodb+srv://admin:v0pqiJxxqxrLTky8@phoneshop.mbzu330.mongodb.net/DevDataBase?retryWrites=true&w=majority",
-  "jwtSecret": "secret"
-}

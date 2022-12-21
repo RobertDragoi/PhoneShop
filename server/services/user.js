@@ -1,17 +1,17 @@
 const jwt = require("jsonwebtoken");
-const config = require("config");
 const User = require("../models/User");
+require("dotenv").config();
 
 const refreshToken = async (req, res) => {
   try {
     const token = req.header("x-refresh-token");
-    const decoded = await jwt.verify(token, config.get("jwtSecret"));
+    const decoded = await jwt.verify(token, process.env.SECRET);
     const payload = {
       user: {
         id: decoded.user.id,
       },
     };
-    const accessToken = await jwt.sign(payload, config.get("jwtSecret"), {
+    const accessToken = await jwt.sign(payload, process.env.SECRET, {
       expiresIn: 360000,
     });
     res.json({ accessToken });

@@ -1,7 +1,7 @@
 const { validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const config = require("config");
+require("dotenv").config();
 const User = require("../models/User");
 
 const register = async (req, res) => {
@@ -27,12 +27,12 @@ const register = async (req, res) => {
         id: user.id,
       },
     };
-    const accessToken = await jwt.sign(payload, config.get("jwtSecret"), {
+    const accessToken = await jwt.sign(payload, process.env.SECRET, {
       expiresIn: 360000,
     });
     const refreshToken = await jwt.sign(
       { ...payload, date: new Date() },
-      config.get("jwtSecret"),
+      process.env.SECRET,
       {
         expiresIn: "30d",
       }
